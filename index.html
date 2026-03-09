@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAREC HR360 | Workforce Intelligence</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#050505;
+color:white;
+}
+
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:#0f0f0f;
+border-bottom:1px solid #1a1a1a;
+}
+
+.logo{
+font-size:20px;
+font-weight:600;
+letter-spacing:1px;
+}
+
+.logo span{
+color:#c62828;
+}
+
+nav a{
+color:#bbb;
+text-decoration:none;
+margin-left:25px;
+font-size:14px;
+}
+
+nav a:hover{
+color:white;
+}
+
+/* HERO SECTION */
+
+.hero{
+
+height:95vh;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 10%;
+
+background:radial-gradient(circle at center,#121212,#000);
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+/* HERO TEXT */
+
+.hero-content{
+max-width:520px;
+z-index:2;
+}
+
+.hero h1{
+font-size:46px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:18px;
+color:#bdbdbd;
+margin-bottom:35px;
+line-height:1.6;
+}
+
+/* HERO LOGO */
+
+.hero-logo{
+
+width:650px;
+height:650px;
+
+background-image:url("https://raw.githubusercontent.com/markreciopro/marec_hr360/main/Marec%20HR360.png");
+
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
+
+/* REMOVE SQUARE EDGES */
+
+-webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 75%);
+mask-image: radial-gradient(circle, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 75%);
+
+/* POP EFFECT */
+
+filter:
+drop-shadow(0px 40px 120px rgba(198,40,40,.8))
+brightness(1.1);
+
+opacity:.95;
+
+animation:floatLogo 7s ease-in-out infinite;
+
+}
+
+/* RED GLOW */
+
+.hero::before{
+
+content:"";
+
+position:absolute;
+
+right:0;
+top:50%;
+
+transform:translateY(-50%);
+
+width:750px;
+height:750px;
+
+background:radial-gradient(circle,
+rgba(198,40,40,.35),
+transparent 70%);
+
+filter:blur(90px);
+
+}
+
+/* BUTTONS */
+
+button{
+padding:14px 32px;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+margin-right:15px;
+}
+
+.btn-primary{
+background:#c62828;
+border:none;
+color:white;
+}
+
+.btn-primary:hover{
+background:#e53935;
+}
+
+.btn-secondary{
+background:#111;
+border:1px solid #333;
+color:white;
+}
+
+.btn-secondary:hover{
+background:#181818;
+}
+
+/* FEATURES */
+
+.features{
+padding:100px 8%;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+background:#0b0b0b;
+}
+
+.feature{
+
+width:260px;
+margin:20px;
+padding:30px;
+
+background:#151515;
+
+border-radius:8px;
+border:1px solid #222;
+
+transition:.3s;
+
+}
+
+.feature:hover{
+
+transform:translateY(-8px);
+
+border-color:#c62828;
+
+}
+
+.feature h3{
+
+color:#c62828;
+
+margin-bottom:10px;
+
+}
+
+.feature p{
+
+color:#aaa;
+
+font-size:15px;
+
+}
+
+/* FOOTER */
+
+footer{
+
+text-align:center;
+padding:40px;
+background:#050505;
+color:#666;
+border-top:1px solid #1a1a1a;
+
+}
+
+/* FLOAT ANIMATION */
+
+@keyframes floatLogo{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-12px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+MAREC <span>HR360</span>
+</div>
+
+<div>
+<a href="#">Product</a>
+<a href="#">Features</a>
+<a href="#">Pricing</a>
+<a href="#">Login</a>
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>AI Workforce Intelligence</h1>
+
+<p>
+Upload your HR data and receive predictive workforce insights,
+turnover risk analysis, and strategic HR recommendations in minutes.
+</p>
+
+<button class="btn-primary">Start Free</button>
+<button class="btn-secondary">View Demo</button>
+
+</div>
+
+<div class="hero-logo"></div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="features">
+
+<div class="feature">
+<h3>Data Upload</h3>
+<p>
+Upload HR datasets including employee records,
+engagement surveys, and workforce metrics.
+</p>
+</div>
+
+<div class="feature">
+<h3>AI Workforce Insights</h3>
+<p>
+Our AI analyzes workforce trends and identifies
+risks, opportunities, and hidden patterns.
+</p>
+</div>
+
+<div class="feature">
+<h3>Predictive Analytics</h3>
+<p>
+Detect turnover risk, engagement decline,
+and workforce performance trends.
+</p>
+</div>
+
+<div class="feature">
+<h3>Strategic Recommendations</h3>
+<p>
+Receive intelligent HR strategy recommendations
+based on workforce data.
+</p>
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+© 2026 Marec Insights — Marec HR360 Workforce Intelligence Platform
+
+</footer>
+
+</body>
+</html>
