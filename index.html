@@ -18,11 +18,7 @@
 
 /* GLOBAL */
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
 font-family:'Inter',sans-serif;
@@ -33,7 +29,7 @@ color:white;
 /* TOPBAR */
 
 .topbar{
-height:250px;
+height:220px;
 display:flex;
 align-items:center;
 justify-content:space-between;
@@ -49,11 +45,12 @@ gap:20px;
 }
 
 .logo img{
-height:150px;
+height:140px;
 }
 
 .logo strong{
-font-size:28px;
+font-size:32px;
+letter-spacing:1px;
 }
 
 .user-info{
@@ -65,7 +62,7 @@ color:#aaa;
 
 .container{
 display:flex;
-height:calc(100vh - 250px);
+height:calc(100vh - 220px);
 }
 
 /* SIDEBAR */
@@ -80,8 +77,8 @@ padding:25px;
 .sidebar h4{
 font-size:12px;
 color:#666;
-margin-bottom:10px;
 margin-top:20px;
+margin-bottom:10px;
 }
 
 .sidebar button{
@@ -94,6 +91,7 @@ color:#aaa;
 border-radius:6px;
 cursor:pointer;
 margin-bottom:6px;
+font-size:14px;
 }
 
 .sidebar button:hover{
@@ -110,7 +108,7 @@ overflow-y:auto;
 }
 
 .workspace-header h1{
-font-size:28px;
+font-size:30px;
 margin-bottom:5px;
 }
 
@@ -172,6 +170,16 @@ font-size:13px;
 color:#aaa;
 }
 
+/* FILE */
+
+.file{
+background:#111;
+border:1px solid #222;
+padding:10px;
+margin-top:10px;
+border-radius:6px;
+}
+
 /* UPLOAD */
 
 .upload-box{
@@ -185,14 +193,6 @@ cursor:pointer;
 
 .upload-box:hover{
 border-color:#c62828;
-}
-
-.file{
-background:#111;
-border:1px solid #222;
-padding:10px;
-margin-top:10px;
-border-radius:6px;
 }
 
 /* POWER BI */
@@ -209,6 +209,12 @@ overflow:hidden;
 width:100%;
 height:100%;
 border:none;
+}
+
+ul{
+margin-top:10px;
+color:#aaa;
+padding-left:18px;
 }
 
 </style>
@@ -254,9 +260,185 @@ Workspace: <span id="workspaceName">Not Connected</span>
 <div id="dashboard" class="section">
 
 <div class="workspace-header">
+
 <h1>Workforce Intelligence Dashboard</h1>
-<p>Executive workforce analytics powered by HR360</p>
+
+<p>Transforming messy workforce data into strategic decision intelligence</p>
+
 </div>
+
+<div class="card">
+
+<h2>MAREC HR360 Workforce Intelligence Platform</h2>
+
+<p style="margin-top:10px;color:#aaa">
+
+MAREC HR360 converts raw HR data into actionable workforce intelligence.  
+The platform integrates HR analytics, workforce analytics, recruiting analytics, and resume intelligence to support strategic workforce decisions.
+
+</p>
+
+</div>
+
+<!-- CAPABILITIES -->
+
+<div class="grid">
+
+<div class="card">
+
+<h3>HR Analytics</h3>
+
+<ul>
+<li>Employee engagement analytics</li>
+<li>Compensation benchmarking</li>
+<li>Performance distribution analysis</li>
+<li>Attrition risk detection</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>Workforce Analytics</h3>
+
+<ul>
+<li>Headcount forecasting</li>
+<li>Labor cost analytics</li>
+<li>Department productivity metrics</li>
+<li>Skills mapping</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>Recruiting Analytics</h3>
+
+<ul>
+<li>Hiring funnel analytics</li>
+<li>Time-to-hire metrics</li>
+<li>Recruiting pipeline forecasting</li>
+<li>Offer acceptance analysis</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>Resume Parsing</h3>
+
+<ul>
+<li>Automated resume parsing</li>
+<li>Skills extraction</li>
+<li>Candidate classification</li>
+<li>Talent pool analytics</li>
+</ul>
+
+</div>
+
+</div>
+
+<!-- DATA PIPELINE -->
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Data Processing Pipeline</h3>
+
+<ul>
+<li>Extract data from CSV, Excel, JSON, and document sources</li>
+<li>Clean messy and inconsistent HR datasets</li>
+<li>Standardize workforce schemas</li>
+<li>Transform raw data into analytics-ready models</li>
+<li>Generate dashboards and workforce insights</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>Data Privacy & Ownership</h3>
+
+<ul>
+<li>Customer data remains owned by the organization</li>
+<li>Files processed only for analytics generation</li>
+<li>Raw data automatically deleted after analysis</li>
+<li>Workspace isolation protects organizational privacy</li>
+<li>No long-term storage of sensitive workforce data</li>
+</ul>
+
+</div>
+
+</div>
+
+<!-- AI WORKFORCE INSIGHTS ENGINE -->
+
+<div class="card">
+
+<h2>AI Workforce Insights Engine</h2>
+
+<p style="margin-top:10px;color:#aaa">
+
+MAREC HR360 applies workforce intelligence models to identify patterns, predict risks, and generate strategic recommendations for HR leaders.
+
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Descriptive Analytics</h3>
+
+<ul>
+<li>Workforce trends</li>
+<li>Employee engagement patterns</li>
+<li>Turnover monitoring</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>Diagnostic Analytics</h3>
+
+<ul>
+<li>Root cause of attrition</li>
+<li>Compensation disparities</li>
+<li>Productivity drivers</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>Predictive Analytics</h3>
+
+<ul>
+<li>Attrition prediction</li>
+<li>Hiring demand forecasting</li>
+<li>Workforce risk detection</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h3>Prescriptive Recommendations</h3>
+
+<ul>
+<li>Retention strategies</li>
+<li>Compensation adjustments</li>
+<li>Recruiting optimization</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ANALYTICS CHARTS -->
 
 <div class="grid">
 
@@ -294,34 +476,49 @@ Workspace: <span id="workspaceName">Not Connected</span>
 <div id="insights" class="section" style="display:none">
 
 <div class="workspace-header">
+
 <h1>Insights & Recommendations</h1>
+
 <p>AI-driven workforce intelligence</p>
+
 </div>
 
 <div class="grid">
 
 <div class="card">
-<h3>Attrition Insight</h3>
-<div class="file">Attrition increased by <strong>8%</strong>.</div>
+
+<h3>Descriptive Insight</h3>
+
+<div class="file">Attrition increased by <strong>8%</strong> in Engineering.</div>
+
 </div>
 
 <div class="card">
-<h3>Root Cause</h3>
-<div class="file">Compensation <strong>12% below market</strong>.</div>
+
+<h3>Diagnostic Insight</h3>
+
+<div class="file">Compensation levels <strong>12% below market</strong>.</div>
+
 </div>
 
 <div class="card">
-<h3>Prediction</h3>
+
+<h3>Predictive Insight</h3>
+
 <div class="file">Attrition risk may reach <strong>18%</strong>.</div>
+
 </div>
 
 <div class="card">
-<h3>Recommendations</h3>
+
+<h3>Recommended Actions</h3>
+
 <div class="file">
 • Adjust salary bands<br>
-• Deploy retention incentives<br>
+• Introduce retention incentives<br>
 • Expand recruiting pipeline
 </div>
+
 </div>
 
 </div>
@@ -333,8 +530,11 @@ Workspace: <span id="workspaceName">Not Connected</span>
 <div id="account" class="section" style="display:none">
 
 <div class="workspace-header">
+
 <h1>Account Access</h1>
+
 <p>Login or create your HR360 workspace</p>
+
 </div>
 
 <div class="grid">
@@ -344,9 +544,12 @@ Workspace: <span id="workspaceName">Not Connected</span>
 <h3>Login</h3>
 
 <form id="loginForm">
+
 <input type="email" id="loginEmail" placeholder="Email" required>
 <input type="password" id="loginPassword" placeholder="Password" required>
+
 <button class="btn">Login</button>
+
 </form>
 
 <div id="loginStatus" class="status"></div>
@@ -358,11 +561,14 @@ Workspace: <span id="workspaceName">Not Connected</span>
 <h3>Create Account</h3>
 
 <form id="signupForm">
+
 <input id="signupName" placeholder="Full Name" required>
 <input id="signupEmail" type="email" placeholder="Email" required>
 <input id="signupPassword" type="password" placeholder="Password" required>
 <input id="signupWorkspace" placeholder="Workspace Name" required>
+
 <button class="btn">Create Account</button>
+
 </form>
 
 <div id="signupStatus" class="status"></div>
@@ -378,14 +584,17 @@ Workspace: <span id="workspaceName">Not Connected</span>
 <div id="upload" class="section" style="display:none">
 
 <div class="workspace-header">
+
 <h1>Upload HR Data</h1>
-<p>Upload datasets for analytics processing</p>
+
+<p>Upload messy HR datasets for automated analysis</p>
+
 </div>
 
 <div class="upload-box" id="uploadBox">
 
-Drag & Drop Files<br><br>
-
+Drag & Drop Files  
+<br><br>
 CSV • Excel • JSON • PDF
 
 <input type="file" id="fileInput" multiple hidden>
@@ -409,160 +618,12 @@ CSV • Excel • JSON • PDF
 /* NAVIGATION */
 
 function show(section){
+
 document.querySelectorAll(".section").forEach(s=>s.style.display="none")
+
 document.getElementById(section).style.display="block"
-}
-
-/* API BASE */
-
-const API_BASE="/api"
-
-/* LOGIN */
-
-const loginForm=document.getElementById("loginForm")
-
-if(loginForm){
-loginForm.addEventListener("submit",async(e)=>{
-
-e.preventDefault()
-
-try{
-
-const res=await fetch(`${API_BASE}/login`,{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-email:loginEmail.value,
-password:loginPassword.value
-})
-})
-
-const data=await res.json()
-
-workspaceName.innerText=data.workspace || "Connected"
-
-loginStatus.innerText="Login successful"
-
-}catch{
-loginStatus.innerText="Login failed"
-}
-
-})
-}
-
-/* SIGNUP */
-
-const signupForm=document.getElementById("signupForm")
-
-if(signupForm){
-signupForm.addEventListener("submit",async(e)=>{
-
-e.preventDefault()
-
-try{
-
-await fetch(`${API_BASE}/signup`,{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-name:signupName.value,
-email:signupEmail.value,
-password:signupPassword.value,
-workspace:signupWorkspace.value
-})
-})
-
-signupStatus.innerText="Account created"
-
-}catch{
-signupStatus.innerText="Signup failed"
-}
-
-})
-}
-
-/* FILE UPLOAD */
-
-const uploadBox=document.getElementById("uploadBox")
-const fileInput=document.getElementById("fileInput")
-const analyzeBtn=document.getElementById("analyzeBtn")
-
-let files=[]
-
-uploadBox.onclick=()=>fileInput.click()
-
-fileInput.addEventListener("change",(e)=>{
-files=[...files,...e.target.files]
-renderFiles()
-})
-
-function renderFiles(){
-
-fileList.innerHTML=""
-
-files.forEach(f=>{
-const div=document.createElement("div")
-div.className="file"
-div.innerText=f.name
-fileList.appendChild(div)
-})
 
 }
-
-/* SEND FILES */
-
-analyzeBtn.onclick=async()=>{
-
-if(files.length===0){
-uploadStatus.innerText="Please upload files first."
-return
-}
-
-uploadStatus.innerText="Uploading files..."
-
-const formData=new FormData()
-
-files.forEach(f=>formData.append("files",f))
-
-await fetch(`${API_BASE}/upload`,{
-method:"POST",
-body:formData
-})
-
-uploadStatus.innerText="Processing started"
-
-}
-
-/* LOGOUT */
-
-function logout(){
-workspaceName.innerText="Not Connected"
-}
-
-/* CHARTS */
-
-const chartOptions={responsive:true,plugins:{legend:{display:false}}}
-
-new Chart(attritionChart,{
-type:"bar",
-data:{labels:["Low","Medium","High"],
-datasets:[{data:[65,25,10],backgroundColor:["#c62828","#ef5350","#ff8a65"]}]},
-options:chartOptions
-})
-
-new Chart(funnelChart,{
-type:"bar",
-data:{labels:["Applicants","Interview","Offer"],
-datasets:[{data:[520,110,45],backgroundColor:"#c62828"}]},
-options:chartOptions
-})
-
-new Chart(engagementChart,{
-type:"line",
-data:{labels:["Q1","Q2","Q3","Q4"],
-datasets:[{data:[78,74,72,70],borderColor:"#c62828"}]},
-options:chartOptions
-})
 
 show("dashboard")
 
