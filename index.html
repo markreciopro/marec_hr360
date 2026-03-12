@@ -1,11 +1,13 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MAREC HR360 | AI Workforce Intelligence</title>
+<title>MAREC HR360 | Workforce Decision Intelligence</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -18,6 +20,7 @@ body{
 font-family:'Inter',sans-serif;
 background:#050505;
 color:white;
+line-height:1.6;
 }
 
 /* NAVBAR */
@@ -26,24 +29,18 @@ nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:22px 8%;
+padding:20px 8%;
 background:#0f0f0f;
 border-bottom:1px solid #1a1a1a;
-position:sticky;
-top:0;
-z-index:100;
 }
 
-.logo{
-font-size:20px;
-font-weight:600;
+.logo img{
+height:80px;
 }
-
-.logo span{color:#c62828;}
 
 nav a{
-color:#bbb;
 margin-left:25px;
+color:#bbb;
 text-decoration:none;
 font-size:14px;
 }
@@ -56,182 +53,149 @@ nav a:hover{color:white}
 min-height:90vh;
 display:flex;
 align-items:center;
-justify-content:space-between;
+justify-content:center;
+flex-direction:column;
+text-align:center;
 padding:0 10%;
 background:radial-gradient(circle,#111,#000);
 }
 
-.hero-content{
-max-width:540px;
-}
-
 .hero h1{
-font-size:48px;
+font-size:52px;
 margin-bottom:20px;
 }
 
 .hero p{
-color:#bdbdbd;
-line-height:1.6;
 font-size:18px;
-margin-bottom:35px;
+color:#bbb;
+margin-bottom:30px;
+max-width:650px;
 }
 
-.hero-logo{
+.hero-brand img{
 width:420px;
-height:420px;
-background-image:url("https://raw.githubusercontent.com/markreciopro/marec_hr360/main/Marec%20HR360.png");
-background-size:contain;
-background-repeat:no-repeat;
-background-position:center;
-filter:drop-shadow(0px 40px 120px rgba(198,40,40,.8));
+max-width:90%;
+margin-top:30px;
+filter:drop-shadow(0px 40px 120px rgba(198,40,40,.6));
 }
 
 /* BUTTON */
 
 .btn{
-padding:14px 30px;
+padding:14px 28px;
 border-radius:6px;
-font-size:16px;
-cursor:pointer;
 border:none;
-}
-
-.btn-primary{
 background:#c62828;
 color:white;
+cursor:pointer;
+font-size:15px;
 }
 
-.btn-primary:hover{
-background:#e53935;
-}
+.btn:hover{background:#e53935}
 
-/* SECTIONS */
+/* SECTION */
 
 .section{
-padding:90px 8%;
+padding:100px 8%;
 text-align:center;
 }
 
 .section h2{
-font-size:34px;
+font-size:36px;
 margin-bottom:20px;
 }
 
-.section p{
-color:#aaa;
-max-width:700px;
-margin:auto;
-}
+/* ANALYTICS DOMAINS */
 
-/* FEATURE CARDS */
-
-.features{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
+.domain-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
 margin-top:50px;
 }
 
-.feature{
-width:260px;
-margin:20px;
-padding:30px;
-background:#151515;
-border-radius:10px;
-border:1px solid #222;
-transition:.3s;
-}
-
-.feature:hover{
-transform:translateY(-6px);
-border-color:#c62828;
-}
-
-.feature h3{
-color:#c62828;
-margin-bottom:10px;
-}
-
-/* PIPELINE */
-
-.pipeline{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-margin-top:40px;
-}
-
-.step{
-width:220px;
-margin:15px;
-padding:25px;
+.domain{
 background:#111;
-border-radius:10px;
 border:1px solid #222;
+padding:30px;
+border-radius:10px;
+text-align:left;
 }
 
-.step h3{
+.domain h3{
 color:#c62828;
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
 /* UPLOAD */
 
 .upload-box{
-background:#111;
+margin-top:40px;
 padding:40px;
-border-radius:12px;
-border:1px solid #222;
-max-width:720px;
-margin:auto;
-margin-top:30px;
+border:2px dashed #333;
+border-radius:10px;
+background:#0f0f0f;
 }
 
-/* RESULTS */
+/* FILE STACK */
 
-.results{
+.file-stack{
+margin-top:40px;
+max-width:650px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.file-card{
+background:#111;
+border:1px solid #222;
+border-radius:8px;
+padding:16px;
+margin-top:-18px;
+box-shadow:0 10px 20px rgba(0,0,0,.6);
+}
+
+/* PROGRESS */
+
+.progress-container{
+width:100%;
+background:#111;
+border-radius:10px;
+margin-top:25px;
+border:1px solid #222;
+overflow:hidden;
+}
+
+.progress-bar{
+height:20px;
+width:0%;
+background:#c62828;
+transition:width .4s;
+}
+
+/* INSIGHTS */
+
+.insights{
+margin-top:60px;
 max-width:800px;
-margin:30px auto;
+margin:auto;
 text-align:left;
 }
 
-.result{
+.insight-card{
 background:#111;
 border:1px solid #222;
 padding:20px;
-margin-top:15px;
-border-radius:8px;
-}
-
-/* KPI CARDS */
-
-.dashboard{
-margin-top:50px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-}
-
-.card{
-background:#151515;
-padding:25px;
 border-radius:10px;
-border:1px solid #222;
+margin-bottom:15px;
 }
 
-.metric{
-font-size:32px;
-font-weight:bold;
-margin-top:10px;
-}
-
-/* CHART GRID */
+/* CHARTS */
 
 .chart-grid{
-margin-top:40px;
+margin-top:50px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
 gap:30px;
 }
 
@@ -244,265 +208,336 @@ border:1px solid #222;
 
 /* POWER BI */
 
+.powerbi-section{margin-top:60px}
+
+.powerbi-logo img{
+height:150px;
+margin-bottom:20px;
+}
+
 .powerbi{
-margin-top:40px;
+margin-top:15px;
+height:420px;
 background:#111;
-padding:40px;
-border-radius:12px;
 border:1px solid #222;
-}
-
-/* STACK */
-
-.stack{
+border-radius:10px;
 display:flex;
+align-items:center;
 justify-content:center;
-gap:40px;
-margin-top:40px;
-flex-wrap:wrap;
-}
-
-.stack img{
-height:50px;
+color:#777;
 }
 
 /* FOOTER */
 
 footer{
+padding:40px;
 text-align:center;
-padding:50px;
-background:#050505;
 color:#666;
 border-top:1px solid #1a1a1a;
+margin-top:100px;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <nav>
 
-<div class="logo">MAREC <span>HR360</span></div>
+<div class="logo">
+<img src="https://raw.githubusercontent.com/markreciopro/marec_hr360/main/Marec%20HR360.png">
+</div>
 
 <div>
-<a href="#features">Features</a>
-<a href="#pipeline">Pipeline</a>
 <a href="#upload">Upload</a>
-<a href="#analytics">Analytics</a>
+<a href="#analytics">Dashboards</a>
+<a href="#insights">AI Insights</a>
 </div>
 
 </nav>
 
 <section class="hero">
 
-<div class="hero-content">
-
-<h1>AI Workforce Intelligence</h1>
+<h1>AI Workforce Decision Intelligence</h1>
 
 <p>
-MAREC HR360 transforms messy HR data into workforce insights,
-predictive analytics, and strategic recommendations for leaders.
+Upload HRIS data, recruiting pipelines, employee surveys or resumes
+to generate workforce analytics, HR insights and predictions.
 </p>
 
-<button class="btn btn-primary">Start Free</button>
+<button class="btn" onclick="scrollToUpload()">Start Analysis</button>
 
+<div class="hero-brand">
+<img src="https://raw.githubusercontent.com/markreciopro/marec_hr360/main/Marec%20HR360.png">
 </div>
-
-<div class="hero-logo"></div>
 
 </section>
 
-<section class="section" id="features">
+<!-- ANALYTICS DOMAINS -->
 
-<h2>HR360 Intelligence Platform</h2>
+<section class="section">
 
-<div class="features">
+<h2>HR360 Analytics Platform</h2>
 
-<div class="feature">
+<div class="domain-grid">
+
+<div class="domain">
 <h3>HR Analytics</h3>
-Workforce KPIs, engagement trends, compensation insights.
+<ul>
+<li>Employee engagement analytics</li>
+<li>Attrition risk modeling</li>
+<li>Compensation insights</li>
+<li>Performance analytics</li>
+</ul>
 </div>
 
-<div class="feature">
-<h3>Recruiting Intelligence</h3>
-Hiring funnels, candidate pipelines, source-of-hire analytics.
+<div class="domain">
+<h3>Recruiting Analytics</h3>
+<ul>
+<li>Hiring funnel analytics</li>
+<li>Source effectiveness</li>
+<li>Time to hire metrics</li>
+<li>Recruiter productivity</li>
+</ul>
 </div>
 
-<div class="feature">
-<h3>Workforce Predictions</h3>
-Predict turnover risk and workforce demand.
+<div class="domain">
+<h3>Workforce Analytics</h3>
+<ul>
+<li>Headcount forecasting</li>
+<li>Workforce cost modeling</li>
+<li>Org structure analytics</li>
+<li>Labor demand prediction</li>
+</ul>
 </div>
 
-<div class="feature">
-<h3>Strategic Insights</h3>
-AI-generated workforce strategy recommendations.
+<div class="domain">
+<h3>Resume Parsing</h3>
+<ul>
+<li>AI resume extraction</li>
+<li>Skills detection</li>
+<li>Candidate ranking</li>
+<li>Talent pipeline creation</li>
+</ul>
 </div>
 
 </div>
 
 </section>
 
-<section class="section" id="pipeline">
-
-<h2>Automated Workforce Data Pipeline</h2>
-
-<div class="pipeline">
-
-<div class="step"><h3>Data Sources</h3>HRIS, ATS, payroll, surveys, resumes</div>
-<div class="step"><h3>Data Cleaning</h3>Remove duplicates and fix missing data</div>
-<div class="step"><h3>Data Structuring</h3>Standardize workforce schemas</div>
-<div class="step"><h3>Workforce Lakehouse</h3>Unified analytics tables</div>
-<div class="step"><h3>AI Models</h3>Predict workforce trends</div>
-<div class="step"><h3>Insights</h3>Strategic HR recommendations</div>
-
-</div>
-
-</section>
+<!-- UPLOAD -->
 
 <section class="section" id="upload">
 
-<h2>Upload Workforce Data or Resumes</h2>
+<h2>Upload Workforce Data</h2>
 
 <div class="upload-box">
 
-<p style="color:#aaa;margin-bottom:20px">
-Upload HR datasets or candidate resumes for workforce analysis.
-</p>
-
-<input type="file" id="dataUpload" multiple>
+<input type="file" id="fileInput" multiple>
 
 <br><br>
 
-<button class="btn btn-primary" onclick="analyzeData()">Analyze Data</button>
+<button class="btn" onclick="commitFiles()">Commit Files for Analysis</button>
+
+<div id="fileCount" style="margin-top:15px;color:#aaa"></div>
+
+<div class="progress-container">
+<div id="progressBar" class="progress-bar"></div>
+</div>
 
 </div>
 
-<div class="results" id="results"></div>
+<div id="fileStack" class="file-stack"></div>
 
+<div id="status" style="margin-top:20px;color:#aaa"></div>
+<h2>Enterprise Data Protection</h2>
+
+<div class="security-section">
+
+<div class="security-card">
+<strong>Customer Data Ownership</strong><br><br>
+Organizations retain full ownership of all workforce data uploaded to the Marec HR360 platform.
+The platform only processes the data temporarily to generate analytics, insights, and dashboards.
+</div>
 </section>
 
-<section class="section">
+<!-- INSIGHTS -->
 
-<h2>Executive Workforce KPIs</h2>
+<section class="section" id="insights">
 
-<div class="dashboard">
+<h2>AI Workforce Insights</h2>
 
-<div class="card">Employees<div class="metric">120</div></div>
-<div class="card">Avg Salary<div class="metric">$72K</div></div>
-<div class="card">Tenure<div class="metric">3.5 yrs</div></div>
-<div class="card">Turnover<div class="metric">11%</div></div>
+<div class="insights">
+
+<div class="insight-card">
+<strong>What Happened</strong><br>
+Attrition increased across engineering teams.
+</div>
+
+<div class="insight-card">
+<strong>Why It Happened</strong><br>
+Salary gap vs market compensation.
+</div>
+
+<div class="insight-card">
+<strong>Prediction</strong><br>
+Attrition may reach 18%.
+</div>
+
+<div class="insight-card">
+<strong>Recommendation</strong><br>
+Adjust compensation bands and retention programs.
+</div>
 
 </div>
 
 </section>
+
+<!-- DASHBOARDS -->
 
 <section class="section" id="analytics">
 
-<h2>Workforce Intelligence Dashboards</h2>
+<h2>Workforce Dashboards</h2>
 
 <div class="chart-grid">
 
-<div class="chart-box"><canvas id="deptChart"></canvas></div>
-<div class="chart-box"><canvas id="attritionChart"></canvas></div>
-<div class="chart-box"><canvas id="engagementChart"></canvas></div>
-<div class="chart-box"><canvas id="funnelChart"></canvas></div>
-<div class="chart-box"><canvas id="sourceChart"></canvas></div>
-<div class="chart-box"><canvas id="skillChart"></canvas></div>
+<div class="chart-box">
+<h3>Attrition Risk</h3>
+<canvas id="attritionChart"></canvas>
+</div>
+
+<div class="chart-box">
+<h3>Recruiting Funnel</h3>
+<canvas id="funnelChart"></canvas>
+</div>
+
+<div class="chart-box">
+<h3>Employee Engagement</h3>
+<canvas id="engagementChart"></canvas>
+</div>
+
+<div class="chart-box">
+<h3>Workforce Forecast</h3>
+<canvas id="forecastChart"></canvas>
+</div>
 
 </div>
 
-</section>
+<div class="powerbi-section">
 
-<section class="section">
+<h3 style="margin-top:60px">Power BI Workforce Dashboard</h3>
 
-<h2>Advanced Analytics Powered by Power BI</h2>
+<div class="powerbi-logo">
+<img src="https://raw.githubusercontent.com/markreciopro/marec_hr360/refs/heads/main/powerbi%20logo%201.avif">
+</div>
 
 <div class="powerbi">
-
-<img src="https://raw.githubusercontent.com/markreciopro/marec_hr360/main/Power%20BI%20logo.jpg" width="120">
-
-<p style="color:#aaa;margin-top:15px">
-Enterprise dashboards powered by Microsoft Power BI
-</p>
+Power BI Live Dashboard (Activated when backend is connected)
+</div>
 
 </div>
 
 </section>
 
 <footer>
-
 © 2026 Marec Insights — HR360 Workforce Intelligence Platform
-
 </footer>
 
 <script>
 
-function analyzeData(){
+function scrollToUpload(){
+document.getElementById("upload").scrollIntoView({behavior:"smooth"})
+}
 
-let files=document.getElementById("dataUpload").files
-let html=""
+let uploadedFiles=[]
+const input=document.getElementById("fileInput")
 
-for(let i=0;i<files.length;i++){
+input.addEventListener("change",function(){
 
-let score=Math.floor(Math.random()*30)+70
+const newFiles=Array.from(input.files)
 
-html+=`
-<div class="result">
-<strong>${files[i].name}</strong><br><br>
-Candidate Match Score: ${score}%<br>
-Skill Gap: Leadership / Data Analytics<br>
-Recommendation: Leadership training program
-</div>
-`
+newFiles.forEach(file=>{
+uploadedFiles.push(file)
+})
+
+displayFiles()
+
+})
+
+function displayFiles(){
+
+const stack=document.getElementById("fileStack")
+const count=document.getElementById("fileCount")
+
+stack.innerHTML=""
+count.innerHTML="Files Staged: "+uploadedFiles.length
+
+uploadedFiles.forEach(file=>{
+
+const div=document.createElement("div")
+
+div.className="file-card"
+
+div.innerHTML=`📄 ${file.name}`
+
+stack.appendChild(div)
+
+})
 
 }
 
-document.getElementById("results").innerHTML=html
+function commitFiles(){
+
+const bar=document.getElementById("progressBar")
+const status=document.getElementById("status")
+
+let progress=0
+
+const interval=setInterval(function(){
+
+progress+=5
+bar.style.width=progress+"%"
+
+if(progress==30) status.innerHTML="Cleaning HR data..."
+if(progress==60) status.innerHTML="Running AI analytics..."
+if(progress==90) status.innerHTML="Generating dashboards..."
+
+if(progress>=100){
+clearInterval(interval)
+status.innerHTML="Analysis complete."
+}
+
+},200)
 
 }
 
 function createChart(id,type,labels,data){
 
 new Chart(document.getElementById(id),{
+
 type:type,
+
 data:{
 labels:labels,
 datasets:[{
 data:data,
 backgroundColor:["#c62828","#ef5350","#ff8a65","#ffd54f","#4fc3f7"]
 }]
-}
+},
+
+options:{plugins:{legend:{display:false}}}
+
 })
 
 }
 
-createChart("deptChart","bar",
-["Engineering","Sales","HR","Finance","Operations"],
-[45,30,12,15,18])
-
-createChart("attritionChart","bar",
-["Low","Medium","High"],
-[65,25,10])
-
-createChart("engagementChart","line",
-["Q1","Q2","Q3","Q4"],
-[72,74,69,78])
-
-createChart("funnelChart","bar",
-["Applicants","Screened","Interview","Offer","Hired"],
-[520,240,110,45,28])
-
-createChart("sourceChart","pie",
-["LinkedIn","Referral","Career Site","Agency"],
-[40,25,20,15])
-
-createChart("skillChart","bar",
-["Data","Leadership","AI","Cloud"],
-[30,18,22,15])
+createChart("attritionChart","bar",["Low","Medium","High"],[65,25,10])
+createChart("funnelChart","bar",["Applicants","Screened","Interview","Offer","Hired"],[520,240,110,45,28])
+createChart("engagementChart","line",["Q1","Q2","Q3","Q4"],[78,74,72,70])
+createChart("forecastChart","line",["2025","2026","2027","2028"],[120,135,150,170])
 
 </script>
 
 </body>
 </html>
+```
