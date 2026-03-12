@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,234 +6,192 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MAREC HR360 | Workforce Decision Intelligence</title>
+<title>MAREC HR360 | Workforce Intelligence Platform</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
 font-family:'Inter',sans-serif;
 background:#050505;
 color:white;
-line-height:1.6;
 }
 
-/* NAVBAR */
+/* TOPBAR */
 
-nav{
+.topbar{
+height:60px;
 display:flex;
-justify-content:space-between;
 align-items:center;
-padding:20px 8%;
-background:#0f0f0f;
+justify-content:space-between;
+padding:0 30px;
+background:#0a0a0a;
 border-bottom:1px solid #1a1a1a;
 }
 
-.logo img{
-height:80px;
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
 }
 
-nav a{
-margin-left:25px;
-color:#bbb;
-text-decoration:none;
+.logo img{
+height:32px;
+}
+
+.user-info{
+font-size:14px;
+color:#aaa;
+}
+
+/* LAYOUT */
+
+.container{
+display:flex;
+height:calc(100vh - 60px);
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:240px;
+background:#0a0a0a;
+border-right:1px solid #1a1a1a;
+padding:25px;
+}
+
+.sidebar h4{
+font-size:12px;
+color:#666;
+margin-bottom:10px;
+}
+
+.sidebar button{
+width:100%;
+padding:10px;
+text-align:left;
+background:none;
+border:none;
+color:#aaa;
+border-radius:6px;
+cursor:pointer;
+margin-bottom:6px;
+}
+
+.sidebar button:hover{
+background:#111;
+color:white;
+}
+
+/* MAIN */
+
+.main{
+flex:1;
+padding:40px;
+overflow-y:auto;
+}
+
+.workspace-header h1{
+font-size:28px;
+margin-bottom:5px;
+}
+
+.workspace-header p{
+color:#888;
 font-size:14px;
 }
 
-nav a:hover{color:white}
+/* GRID */
 
-/* HERO */
-
-.hero{
-min-height:90vh;
-display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-text-align:center;
-padding:0 10%;
-background:radial-gradient(circle,#111,#000);
-}
-
-.hero h1{
-font-size:52px;
-margin-bottom:20px;
-}
-
-.hero p{
-font-size:18px;
-color:#bbb;
-margin-bottom:30px;
-max-width:650px;
-}
-
-.hero-brand img{
-width:420px;
-max-width:90%;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:25px;
 margin-top:30px;
-filter:drop-shadow(0px 40px 120px rgba(198,40,40,.6));
+}
+
+/* CARD */
+
+.card{
+background:#0f0f0f;
+border:1px solid #222;
+border-radius:10px;
+padding:20px;
+}
+
+/* INPUT */
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+background:#111;
+border:1px solid #333;
+color:white;
+border-radius:6px;
 }
 
 /* BUTTON */
 
 .btn{
-padding:14px 28px;
-border-radius:6px;
-border:none;
+margin-top:15px;
+padding:12px 20px;
 background:#c62828;
+border:none;
+border-radius:6px;
 color:white;
 cursor:pointer;
-font-size:15px;
 }
 
-.btn:hover{background:#e53935}
-
-/* SECTION */
-
-.section{
-padding:100px 8%;
-text-align:center;
+.btn:hover{
+background:#e53935;
 }
 
-.section h2{
-font-size:36px;
-margin-bottom:20px;
-}
+/* STATUS */
 
-/* ANALYTICS DOMAINS */
-
-.domain-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-margin-top:50px;
-}
-
-.domain{
-background:#111;
-border:1px solid #222;
-padding:30px;
-border-radius:10px;
-text-align:left;
-}
-
-.domain h3{
-color:#c62828;
-margin-bottom:15px;
+.status{
+margin-top:10px;
+font-size:13px;
+color:#aaa;
 }
 
 /* UPLOAD */
 
 .upload-box{
-margin-top:40px;
+margin-top:20px;
 padding:40px;
 border:2px dashed #333;
 border-radius:10px;
-background:#0f0f0f;
+text-align:center;
+cursor:pointer;
 }
 
-/* FILE STACK */
-
-.file-stack{
-margin-top:40px;
-max-width:650px;
-margin-left:auto;
-margin-right:auto;
-}
-
-.file-card{
+.file{
 background:#111;
 border:1px solid #222;
-border-radius:8px;
-padding:16px;
-margin-top:-18px;
-box-shadow:0 10px 20px rgba(0,0,0,.6);
-}
-
-/* PROGRESS */
-
-.progress-container{
-width:100%;
-background:#111;
-border-radius:10px;
-margin-top:25px;
-border:1px solid #222;
-overflow:hidden;
-}
-
-.progress-bar{
-height:20px;
-width:0%;
-background:#c62828;
-transition:width .4s;
-}
-
-/* INSIGHTS */
-
-.insights{
-margin-top:60px;
-max-width:800px;
-margin:auto;
-text-align:left;
-}
-
-.insight-card{
-background:#111;
-border:1px solid #222;
-padding:20px;
-border-radius:10px;
-margin-bottom:15px;
-}
-
-/* CHARTS */
-
-.chart-grid{
-margin-top:50px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
-gap:30px;
-}
-
-.chart-box{
-background:#111;
-padding:25px;
-border-radius:10px;
-border:1px solid #222;
+padding:10px;
+margin-top:10px;
+border-radius:6px;
 }
 
 /* POWER BI */
 
-.powerbi-section{margin-top:60px}
-
-.powerbi-logo img{
-height:150px;
-margin-bottom:20px;
-}
-
 .powerbi{
-margin-top:15px;
 height:420px;
-background:#111;
+margin-top:10px;
 border:1px solid #222;
-border-radius:10px;
-display:flex;
-align-items:center;
-justify-content:center;
-color:#777;
+border-radius:8px;
+overflow:hidden;
 }
 
-/* FOOTER */
-
-footer{
-padding:40px;
-text-align:center;
-color:#666;
-border-top:1px solid #1a1a1a;
-margin-top:100px;
+.powerbi iframe{
+width:100%;
+height:100%;
+border:none;
 }
 
 </style>
@@ -242,302 +199,335 @@ margin-top:100px;
 
 <body>
 
-<nav>
+<!-- TOPBAR -->
+
+<div class="topbar">
 
 <div class="logo">
 <img src="https://raw.githubusercontent.com/markreciopro/marec_hr360/main/Marec%20HR360.png">
+<strong>MAREC HR360</strong>
 </div>
 
-<div>
-<a href="#upload">Upload</a>
-<a href="#analytics">Dashboards</a>
-<a href="#insights">AI Insights</a>
-</div>
-
-</nav>
-
-<section class="hero">
-
-<h1>AI Workforce Decision Intelligence</h1>
-
-<p>
-Upload HRIS data, recruiting pipelines, employee surveys or resumes
-to generate workforce analytics, HR insights and predictions.
-</p>
-
-<button class="btn" onclick="scrollToUpload()">Start Analysis</button>
-
-<div class="hero-brand">
-<img src="https://raw.githubusercontent.com/markreciopro/marec_hr360/main/Marec%20HR360.png">
-</div>
-
-</section>
-
-<!-- ANALYTICS DOMAINS -->
-
-<section class="section">
-
-<h2>HR360 Analytics Platform</h2>
-
-<div class="domain-grid">
-
-<div class="domain">
-<h3>HR Analytics</h3>
-<ul>
-<li>Employee engagement analytics</li>
-<li>Attrition risk modeling</li>
-<li>Compensation insights</li>
-<li>Performance analytics</li>
-</ul>
-</div>
-
-<div class="domain">
-<h3>Recruiting Analytics</h3>
-<ul>
-<li>Hiring funnel analytics</li>
-<li>Source effectiveness</li>
-<li>Time to hire metrics</li>
-<li>Recruiter productivity</li>
-</ul>
-</div>
-
-<div class="domain">
-<h3>Workforce Analytics</h3>
-<ul>
-<li>Headcount forecasting</li>
-<li>Workforce cost modeling</li>
-<li>Org structure analytics</li>
-<li>Labor demand prediction</li>
-</ul>
-</div>
-
-<div class="domain">
-<h3>Resume Parsing</h3>
-<ul>
-<li>AI resume extraction</li>
-<li>Skills detection</li>
-<li>Candidate ranking</li>
-<li>Talent pipeline creation</li>
-</ul>
+<div class="user-info">
+Workspace: <span id="workspaceName">Not Connected</span>
 </div>
 
 </div>
 
-</section>
+<div class="container">
 
-<!-- UPLOAD -->
+<!-- SIDEBAR -->
 
-<section class="section" id="upload">
+<div class="sidebar">
 
-<h2>Upload Workforce Data</h2>
+<h4>WORKSPACE</h4>
 
-<div class="upload-box">
+<button onclick="show('dashboard')">Dashboard</button>
+<button onclick="show('hr')">HR Analytics</button>
+<button onclick="show('recruiting')">Recruiting Analytics</button>
+<button onclick="show('workforce')">Workforce Analytics</button>
+<button onclick="show('insights')">Insights</button>
+<button onclick="show('upload')">Upload Data</button>
 
-<input type="file" id="fileInput" multiple>
+<h4 style="margin-top:20px">ACCOUNT</h4>
 
-<br><br>
-
-<button class="btn" onclick="commitFiles()">Commit Files for Analysis</button>
-
-<div id="fileCount" style="margin-top:15px;color:#aaa"></div>
-
-<div class="progress-container">
-<div id="progressBar" class="progress-bar"></div>
-</div>
+<button onclick="show('account')">Login / Create Account</button>
+<button onclick="logout()">Logout</button>
 
 </div>
 
-<div id="fileStack" class="file-stack"></div>
+<!-- MAIN -->
 
-<div id="status" style="margin-top:20px;color:#aaa"></div>
-<h2>Enterprise Data Protection</h2>
+<div class="main">
 
-<div class="security-section">
+<!-- DASHBOARD -->
 
-<div class="security-card">
-<strong>Customer Data Ownership</strong><br><br>
-Organizations retain full ownership of all workforce data uploaded to the Marec HR360 platform.
-The platform only processes the data temporarily to generate analytics, insights, and dashboards.
-</div>
-</section>
+<div id="dashboard" class="section">
 
-<!-- INSIGHTS -->
-
-<section class="section" id="insights">
-
-<h2>AI Workforce Insights</h2>
-
-<div class="insights">
-
-<div class="insight-card">
-<strong>What Happened</strong><br>
-Attrition increased across engineering teams.
+<div class="workspace-header">
+<h1>Workforce Intelligence Dashboard</h1>
+<p>Executive workforce analytics powered by HR360</p>
 </div>
 
-<div class="insight-card">
-<strong>Why It Happened</strong><br>
-Salary gap vs market compensation.
-</div>
+<div class="grid">
 
-<div class="insight-card">
-<strong>Prediction</strong><br>
-Attrition may reach 18%.
-</div>
-
-<div class="insight-card">
-<strong>Recommendation</strong><br>
-Adjust compensation bands and retention programs.
-</div>
-
-</div>
-
-</section>
-
-<!-- DASHBOARDS -->
-
-<section class="section" id="analytics">
-
-<h2>Workforce Dashboards</h2>
-
-<div class="chart-grid">
-
-<div class="chart-box">
+<div class="card">
 <h3>Attrition Risk</h3>
 <canvas id="attritionChart"></canvas>
 </div>
 
-<div class="chart-box">
+<div class="card">
 <h3>Recruiting Funnel</h3>
 <canvas id="funnelChart"></canvas>
 </div>
 
-<div class="chart-box">
+<div class="card">
 <h3>Employee Engagement</h3>
 <canvas id="engagementChart"></canvas>
 </div>
 
-<div class="chart-box">
-<h3>Workforce Forecast</h3>
-<canvas id="forecastChart"></canvas>
-</div>
+<div class="card">
 
-</div>
-
-<div class="powerbi-section">
-
-<h3 style="margin-top:60px">Power BI Workforce Dashboard</h3>
-
-<div class="powerbi-logo">
-<img src="https://raw.githubusercontent.com/markreciopro/marec_hr360/refs/heads/main/powerbi%20logo%201.avif">
-</div>
+<h3>Power BI Executive Dashboard</h3>
 
 <div class="powerbi">
-Power BI Live Dashboard (Activated when backend is connected)
+<iframe id="powerbiFrame" src=""></iframe>
 </div>
 
 </div>
 
-</section>
+</div>
+</div>
 
-<footer>
-© 2026 Marec Insights — HR360 Workforce Intelligence Platform
-</footer>
+<!-- ACCOUNT -->
+
+<div id="account" class="section" style="display:none">
+
+<div class="workspace-header">
+<h1>Account Access</h1>
+<p>Login or create your HR360 workspace</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Login</h3>
+
+<form id="loginForm">
+
+<input type="email" id="loginEmail" placeholder="Email" required>
+<input type="password" id="loginPassword" placeholder="Password" required>
+
+<button class="btn">Login</button>
+
+</form>
+
+<div id="loginStatus" class="status"></div>
+
+</div>
+
+<div class="card">
+
+<h3>Create Account</h3>
+
+<form id="signupForm">
+
+<input id="signupName" placeholder="Full Name" required>
+<input id="signupEmail" type="email" placeholder="Email" required>
+<input id="signupPassword" type="password" placeholder="Password" required>
+<input id="signupWorkspace" placeholder="Workspace Name" required>
+
+<button class="btn">Create Account</button>
+
+</form>
+
+<div id="signupStatus" class="status"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- UPLOAD -->
+
+<div id="upload" class="section" style="display:none">
+
+<div class="workspace-header">
+<h1>Upload HR Data</h1>
+<p>Upload datasets for analytics processing</p>
+</div>
+
+<div class="upload-box" id="uploadBox">
+
+Drag & Drop Files<br><br>
+
+CSV • Excel • JSON • PDF
+
+<input type="file" id="fileInput" multiple hidden>
+
+</div>
+
+<div id="fileList"></div>
+
+<button class="btn" id="analyzeBtn">Send Files to Data Pipeline</button>
+
+<div id="uploadStatus" class="status"></div>
+
+</div>
+
+</div>
+</div>
 
 <script>
 
-function scrollToUpload(){
-document.getElementById("upload").scrollIntoView({behavior:"smooth"})
+/* NAVIGATION */
+
+function show(section){
+
+document.querySelectorAll(".section").forEach(s=>s.style.display="none")
+
+document.getElementById(section).style.display="block"
+
 }
 
-let uploadedFiles=[]
-const input=document.getElementById("fileInput")
+/* AUTHENTICATION API */
 
-input.addEventListener("change",function(){
+const API_BASE="/api"
 
-const newFiles=Array.from(input.files)
+/* LOGIN */
 
-newFiles.forEach(file=>{
-uploadedFiles.push(file)
+document.getElementById("loginForm").addEventListener("submit",async(e)=>{
+
+e.preventDefault()
+
+const email=loginEmail.value
+const password=loginPassword.value
+
+try{
+
+const res=await fetch(`${API_BASE}/login`,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({email,password})
 })
 
-displayFiles()
+const data=await res.json()
+
+workspaceName.innerText=data.workspace
+
+loginStatus.innerText="Login successful"
+
+}catch(err){
+
+loginStatus.innerText="Login failed"
+
+}
 
 })
 
-function displayFiles(){
+/* SIGNUP */
 
-const stack=document.getElementById("fileStack")
-const count=document.getElementById("fileCount")
+document.getElementById("signupForm").addEventListener("submit",async(e)=>{
 
-stack.innerHTML=""
-count.innerHTML="Files Staged: "+uploadedFiles.length
+e.preventDefault()
 
-uploadedFiles.forEach(file=>{
+const payload={
+name:signupName.value,
+email:signupEmail.value,
+password:signupPassword.value,
+workspace:signupWorkspace.value
+}
+
+try{
+
+await fetch(`${API_BASE}/signup`,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(payload)
+})
+
+signupStatus.innerText="Account created"
+
+}catch{
+
+signupStatus.innerText="Signup failed"
+
+}
+
+})
+
+/* FILE UPLOAD */
+
+const uploadBox=document.getElementById("uploadBox")
+const fileInput=document.getElementById("fileInput")
+
+uploadBox.onclick=()=>fileInput.click()
+
+let files=[]
+
+fileInput.addEventListener("change",(e)=>{
+
+files=[...files,...e.target.files]
+
+renderFiles()
+
+})
+
+function renderFiles(){
+
+fileList.innerHTML=""
+
+files.forEach(f=>{
 
 const div=document.createElement("div")
 
-div.className="file-card"
+div.className="file"
 
-div.innerHTML=`📄 ${file.name}`
+div.innerText=f.name
 
-stack.appendChild(div)
-
-})
-
-}
-
-function commitFiles(){
-
-const bar=document.getElementById("progressBar")
-const status=document.getElementById("status")
-
-let progress=0
-
-const interval=setInterval(function(){
-
-progress+=5
-bar.style.width=progress+"%"
-
-if(progress==30) status.innerHTML="Cleaning HR data..."
-if(progress==60) status.innerHTML="Running AI analytics..."
-if(progress==90) status.innerHTML="Generating dashboards..."
-
-if(progress>=100){
-clearInterval(interval)
-status.innerHTML="Analysis complete."
-}
-
-},200)
-
-}
-
-function createChart(id,type,labels,data){
-
-new Chart(document.getElementById(id),{
-
-type:type,
-
-data:{
-labels:labels,
-datasets:[{
-data:data,
-backgroundColor:["#c62828","#ef5350","#ff8a65","#ffd54f","#4fc3f7"]
-}]
-},
-
-options:{plugins:{legend:{display:false}}}
+fileList.appendChild(div)
 
 })
 
 }
 
-createChart("attritionChart","bar",["Low","Medium","High"],[65,25,10])
-createChart("funnelChart","bar",["Applicants","Screened","Interview","Offer","Hired"],[520,240,110,45,28])
-createChart("engagementChart","line",["Q1","Q2","Q3","Q4"],[78,74,72,70])
-createChart("forecastChart","line",["2025","2026","2027","2028"],[120,135,150,170])
+/* SEND FILES */
+
+analyzeBtn.onclick=async()=>{
+
+uploadStatus.innerText="Uploading files..."
+
+const formData=new FormData()
+
+files.forEach(f=>formData.append("files",f))
+
+await fetch(`${API_BASE}/upload`,{
+
+method:"POST",
+body:formData
+
+})
+
+uploadStatus.innerText="Processing started"
+
+}
+
+/* LOGOUT */
+
+function logout(){
+
+workspaceName.innerText="Not Connected"
+
+}
+
+/* CHARTS */
+
+const chartOptions={responsive:true,plugins:{legend:{display:false}}}
+
+new Chart(attritionChart,{
+type:"bar",
+data:{labels:["Low","Medium","High"],
+datasets:[{data:[65,25,10],backgroundColor:["#c62828","#ef5350","#ff8a65"]}]},
+options:chartOptions
+})
+
+new Chart(funnelChart,{
+type:"bar",
+data:{labels:["Applicants","Interview","Offer"],
+datasets:[{data:[520,110,45],backgroundColor:"#c62828"}]},
+options:chartOptions
+})
+
+new Chart(engagementChart,{
+type:"line",
+data:{labels:["Q1","Q2","Q3","Q4"],
+datasets:[{data:[78,74,72,70],borderColor:"#c62828"}]},
+options:chartOptions
+})
 
 </script>
 
 </body>
 </html>
-```
