@@ -8,12 +8,21 @@
 
 <title>MAREC HR360 | Workforce Intelligence Platform</title>
 
+<meta name="description" content="MAREC HR360 Workforce Intelligence Platform">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box}
+/* GLOBAL */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
 body{
 font-family:'Inter',sans-serif;
@@ -24,11 +33,11 @@ color:white;
 /* TOPBAR */
 
 .topbar{
-height:60px;
+height:250px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:0 30px;
+padding:0 40px;
 background:#0a0a0a;
 border-bottom:1px solid #1a1a1a;
 }
@@ -36,11 +45,15 @@ border-bottom:1px solid #1a1a1a;
 .logo{
 display:flex;
 align-items:center;
-gap:10px;
+gap:20px;
 }
 
 .logo img{
-height:32px;
+height:150px;
+}
+
+.logo strong{
+font-size:28px;
 }
 
 .user-info{
@@ -52,7 +65,7 @@ color:#aaa;
 
 .container{
 display:flex;
-height:calc(100vh - 60px);
+height:calc(100vh - 250px);
 }
 
 /* SIDEBAR */
@@ -68,6 +81,7 @@ padding:25px;
 font-size:12px;
 color:#666;
 margin-bottom:10px;
+margin-top:20px;
 }
 
 .sidebar button{
@@ -102,7 +116,6 @@ margin-bottom:5px;
 
 .workspace-header p{
 color:#888;
-font-size:14px;
 }
 
 /* GRID */
@@ -170,6 +183,10 @@ text-align:center;
 cursor:pointer;
 }
 
+.upload-box:hover{
+border-color:#c62828;
+}
+
 .file{
 background:#111;
 border:1px solid #222;
@@ -195,11 +212,10 @@ border:none;
 }
 
 </style>
+
 </head>
 
 <body>
-
-<!-- TOPBAR -->
 
 <div class="topbar">
 
@@ -216,27 +232,20 @@ Workspace: <span id="workspaceName">Not Connected</span>
 
 <div class="container">
 
-<!-- SIDEBAR -->
-
 <div class="sidebar">
 
 <h4>WORKSPACE</h4>
 
 <button onclick="show('dashboard')">Dashboard</button>
-<button onclick="show('hr')">HR Analytics</button>
-<button onclick="show('recruiting')">Recruiting Analytics</button>
-<button onclick="show('workforce')">Workforce Analytics</button>
-<button onclick="show('insights')">Insights</button>
+<button onclick="show('insights')">Insights & Recommendations</button>
 <button onclick="show('upload')">Upload Data</button>
 
-<h4 style="margin-top:20px">ACCOUNT</h4>
+<h4>ACCOUNT</h4>
 
 <button onclick="show('account')">Login / Create Account</button>
 <button onclick="logout()">Logout</button>
 
 </div>
-
-<!-- MAIN -->
 
 <div class="main">
 
@@ -271,12 +280,52 @@ Workspace: <span id="workspaceName">Not Connected</span>
 <h3>Power BI Executive Dashboard</h3>
 
 <div class="powerbi">
-<iframe id="powerbiFrame" src=""></iframe>
+<iframe id="powerbiFrame"></iframe>
 </div>
 
 </div>
 
 </div>
+
+</div>
+
+<!-- INSIGHTS -->
+
+<div id="insights" class="section" style="display:none">
+
+<div class="workspace-header">
+<h1>Insights & Recommendations</h1>
+<p>AI-driven workforce intelligence</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>Attrition Insight</h3>
+<div class="file">Attrition increased by <strong>8%</strong>.</div>
+</div>
+
+<div class="card">
+<h3>Root Cause</h3>
+<div class="file">Compensation <strong>12% below market</strong>.</div>
+</div>
+
+<div class="card">
+<h3>Prediction</h3>
+<div class="file">Attrition risk may reach <strong>18%</strong>.</div>
+</div>
+
+<div class="card">
+<h3>Recommendations</h3>
+<div class="file">
+• Adjust salary bands<br>
+• Deploy retention incentives<br>
+• Expand recruiting pipeline
+</div>
+</div>
+
+</div>
+
 </div>
 
 <!-- ACCOUNT -->
@@ -295,12 +344,9 @@ Workspace: <span id="workspaceName">Not Connected</span>
 <h3>Login</h3>
 
 <form id="loginForm">
-
 <input type="email" id="loginEmail" placeholder="Email" required>
 <input type="password" id="loginPassword" placeholder="Password" required>
-
 <button class="btn">Login</button>
-
 </form>
 
 <div id="loginStatus" class="status"></div>
@@ -312,14 +358,11 @@ Workspace: <span id="workspaceName">Not Connected</span>
 <h3>Create Account</h3>
 
 <form id="signupForm">
-
 <input id="signupName" placeholder="Full Name" required>
 <input id="signupEmail" type="email" placeholder="Email" required>
 <input id="signupPassword" type="password" placeholder="Password" required>
 <input id="signupWorkspace" placeholder="Workspace Name" required>
-
 <button class="btn">Create Account</button>
-
 </form>
 
 <div id="signupStatus" class="status"></div>
@@ -358,6 +401,7 @@ CSV • Excel • JSON • PDF
 </div>
 
 </div>
+
 </div>
 
 <script>
@@ -365,94 +409,91 @@ CSV • Excel • JSON • PDF
 /* NAVIGATION */
 
 function show(section){
-
 document.querySelectorAll(".section").forEach(s=>s.style.display="none")
-
 document.getElementById(section).style.display="block"
-
 }
 
-/* AUTHENTICATION API */
+/* API BASE */
 
 const API_BASE="/api"
 
 /* LOGIN */
 
-document.getElementById("loginForm").addEventListener("submit",async(e)=>{
+const loginForm=document.getElementById("loginForm")
+
+if(loginForm){
+loginForm.addEventListener("submit",async(e)=>{
 
 e.preventDefault()
-
-const email=loginEmail.value
-const password=loginPassword.value
 
 try{
 
 const res=await fetch(`${API_BASE}/login`,{
 method:"POST",
 headers:{"Content-Type":"application/json"},
-body:JSON.stringify({email,password})
+body:JSON.stringify({
+email:loginEmail.value,
+password:loginPassword.value
+})
 })
 
 const data=await res.json()
 
-workspaceName.innerText=data.workspace
+workspaceName.innerText=data.workspace || "Connected"
 
 loginStatus.innerText="Login successful"
 
-}catch(err){
-
+}catch{
 loginStatus.innerText="Login failed"
-
 }
 
 })
+}
 
 /* SIGNUP */
 
-document.getElementById("signupForm").addEventListener("submit",async(e)=>{
+const signupForm=document.getElementById("signupForm")
+
+if(signupForm){
+signupForm.addEventListener("submit",async(e)=>{
 
 e.preventDefault()
-
-const payload={
-name:signupName.value,
-email:signupEmail.value,
-password:signupPassword.value,
-workspace:signupWorkspace.value
-}
 
 try{
 
 await fetch(`${API_BASE}/signup`,{
 method:"POST",
 headers:{"Content-Type":"application/json"},
-body:JSON.stringify(payload)
+body:JSON.stringify({
+name:signupName.value,
+email:signupEmail.value,
+password:signupPassword.value,
+workspace:signupWorkspace.value
+})
 })
 
 signupStatus.innerText="Account created"
 
 }catch{
-
 signupStatus.innerText="Signup failed"
-
 }
 
 })
+}
 
 /* FILE UPLOAD */
 
 const uploadBox=document.getElementById("uploadBox")
 const fileInput=document.getElementById("fileInput")
-
-uploadBox.onclick=()=>fileInput.click()
+const analyzeBtn=document.getElementById("analyzeBtn")
 
 let files=[]
 
+uploadBox.onclick=()=>fileInput.click()
+
 fileInput.addEventListener("change",(e)=>{
-
 files=[...files,...e.target.files]
-
 renderFiles()
-
 })
 
 function renderFiles(){
@@ -460,15 +501,10 @@ function renderFiles(){
 fileList.innerHTML=""
 
 files.forEach(f=>{
-
 const div=document.createElement("div")
-
 div.className="file"
-
 div.innerText=f.name
-
 fileList.appendChild(div)
-
 })
 
 }
@@ -477,6 +513,11 @@ fileList.appendChild(div)
 
 analyzeBtn.onclick=async()=>{
 
+if(files.length===0){
+uploadStatus.innerText="Please upload files first."
+return
+}
+
 uploadStatus.innerText="Uploading files..."
 
 const formData=new FormData()
@@ -484,10 +525,8 @@ const formData=new FormData()
 files.forEach(f=>formData.append("files",f))
 
 await fetch(`${API_BASE}/upload`,{
-
 method:"POST",
 body:formData
-
 })
 
 uploadStatus.innerText="Processing started"
@@ -497,9 +536,7 @@ uploadStatus.innerText="Processing started"
 /* LOGOUT */
 
 function logout(){
-
 workspaceName.innerText="Not Connected"
-
 }
 
 /* CHARTS */
@@ -526,6 +563,8 @@ data:{labels:["Q1","Q2","Q3","Q4"],
 datasets:[{data:[78,74,72,70],borderColor:"#c62828"}]},
 options:chartOptions
 })
+
+show("dashboard")
 
 </script>
 
