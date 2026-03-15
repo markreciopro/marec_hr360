@@ -26,7 +26,7 @@ margin:0;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 40px;
+padding:50px 80px;
 background:#0a0a0a;
 border-bottom:1px solid #1a1a1a;
 }
@@ -34,11 +34,17 @@ border-bottom:1px solid #1a1a1a;
 .logo{
 display:flex;
 align-items:center;
-gap:10px;
+gap:25px;
 }
 
 .logo img{
-height:60px;
+height:210px;
+}
+
+.logo-title{
+font-size:36px;
+font-weight:700;
+letter-spacing:2px;
 }
 
 .status{
@@ -50,26 +56,27 @@ color:#aaa;
 
 .container{
 display:flex;
-min-height:calc(100vh - 70px);
+min-height:calc(100vh - 150px);
 }
 
 .sidebar{
-width:220px;
+width:300px;
 background:#0a0a0a;
-padding:20px;
+padding:30px;
 border-right:1px solid #1a1a1a;
 }
 
 .sidebar button{
 width:100%;
-padding:10px;
+padding:13px;
 margin-top:6px;
 background:none;
 border:none;
 color:#aaa;
 text-align:left;
 cursor:pointer;
-border-radius:4px;
+border-radius:5px;
+font-size:15px;
 }
 
 .sidebar button:hover{
@@ -79,7 +86,7 @@ color:white;
 
 .main{
 flex:1;
-padding:40px;
+padding:50px;
 }
 
 /* CARDS */
@@ -87,27 +94,44 @@ padding:40px;
 .card{
 background:#0f0f0f;
 border:1px solid #222;
-border-radius:8px;
-padding:20px;
-margin-bottom:20px;
+border-radius:10px;
+padding:28px;
+margin-bottom:25px;
 }
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
 }
 
 .kpi{
-font-size:28px;
+font-size:34px;
 font-weight:700;
 }
 
-/* INPUT */
+.upload-box{
+border:2px dashed #333;
+padding:65px;
+text-align:center;
+border-radius:10px;
+}
+
+.file-item{
+padding:8px;
+font-size:14px;
+border-bottom:1px solid #222;
+}
+
+.powerbi{
+width:100%;
+height:650px;
+border:none;
+}
 
 input{
 width:100%;
-padding:10px;
+padding:12px;
 margin-top:10px;
 background:#111;
 border:1px solid #333;
@@ -115,13 +139,11 @@ color:white;
 border-radius:4px;
 }
 
-/* BUTTON */
-
 .btn{
 background:#c62828;
 border:none;
-padding:10px 16px;
-margin-top:12px;
+padding:12px 18px;
+margin-top:14px;
 color:white;
 cursor:pointer;
 border-radius:5px;
@@ -131,23 +153,8 @@ border-radius:5px;
 background:#e53935;
 }
 
-/* UPLOAD */
-
-.upload-box{
-border:2px dashed #333;
-padding:40px;
-text-align:center;
-border-radius:10px;
-}
-
-.file-item{
-padding:6px;
-font-size:14px;
-border-bottom:1px solid #222;
-}
-
 canvas{
-max-height:260px;
+max-height:320px;
 }
 
 </style>
@@ -156,13 +163,11 @@ max-height:260px;
 
 <body>
 
-<!-- HEADER -->
-
 <div class="topbar">
 
 <div class="logo">
 <img src="https://raw.githubusercontent.com/markreciopro/marec_hr360/main/Marec%20HR360.png">
-<strong>MAREC HR360</strong>
+<div class="logo-title">MAREC HR360</div>
 </div>
 
 <div class="status">
@@ -174,15 +179,20 @@ API: <span id="apiStatus">Checking...</span>
 
 <div class="container">
 
-<!-- SIDEBAR -->
-
 <div class="sidebar">
 
 <button onclick="show('dashboard')">Dashboard</button>
-<button onclick="show('analytics')">Analytics</button>
-<button onclick="show('pipeline')">Pipeline</button>
+<button onclick="show('philosophy')">HR360 Philosophy</button>
+<button onclick="show('hranalytics')">HR Analytics</button>
+<button onclick="show('recruiting')">Recruiting Analytics</button>
+<button onclick="show('workforce')">Workforce Analytics</button>
+<button onclick="show('skills')">Skill Gap Analysis</button>
+<button onclick="show('resume')">Resume Parsing</button>
+<button onclick="show('predictive')">Predictive Insights</button>
+<button onclick="show('pipeline')">Data Cleaning Engine</button>
+<button onclick="show('powerbi')">Power BI Dashboard</button>
 <button onclick="show('datasets')">Datasets</button>
-<button onclick="show('upload')">Upload HR Data</button>
+<button onclick="show('upload')">Workforce Data Ingestion</button>
 <button onclick="show('account')">Account</button>
 
 </div>
@@ -196,18 +206,18 @@ API: <span id="apiStatus">Checking...</span>
 <div class="grid">
 
 <div class="card">
-<h3>Attrition</h3>
-<div class="kpi">12%</div>
+<h3>Attrition Rate</h3>
+<div class="kpi">--</div>
 </div>
 
 <div class="card">
-<h3>Engagement</h3>
-<div class="kpi">74%</div>
+<h3>Time to Hire</h3>
+<div class="kpi">--</div>
 </div>
 
 <div class="card">
-<h3>Headcount</h3>
-<div class="kpi">1250</div>
+<h3>Total Workforce</h3>
+<div class="kpi">--</div>
 </div>
 
 </div>
@@ -219,27 +229,145 @@ API: <span id="apiStatus">Checking...</span>
 
 </div>
 
-<!-- ANALYTICS -->
+<!-- PHILOSOPHY -->
 
-<div id="analytics" class="section" style="display:none">
+<div id="philosophy" class="section" style="display:none">
 
 <div class="card">
-<h3>Recruiting Funnel</h3>
-<canvas id="funnelChart"></canvas>
-</div>
+
+<h2>MAREC HR360 Philosophy</h2>
+
+<p>
+
+MAREC HR360 transforms messy workforce data into actionable intelligence.
+Instead of static HR reports, HR360 uses automated analytics,
+data cleaning, and predictive modeling to help organizations
+understand workforce trends and make strategic decisions.
+
+</p>
 
 </div>
 
-<!-- PIPELINE -->
+</div>
+
+<!-- DATA CLEANING ENGINE -->
 
 <div id="pipeline" class="section" style="display:none">
 
 <div class="card">
-<h2>Data Processing Pipeline</h2>
 
-<div id="pipelineStatus">
-Waiting for HR dataset upload...
+<h2>HR360 Data Cleaning Engine</h2>
+
+<p>
+
+Organizations often upload messy HR data. HR360 automatically
+standardizes and cleans workforce datasets before analytics
+are generated.
+
+</p>
+
+<h3>Structured Data Cleaning</h3>
+
+<ul>
+
+<li>Standardize column names</li>
+<li>Remove duplicate employee records</li>
+<li>Normalize department naming</li>
+<li>Convert inconsistent date formats</li>
+<li>Handle missing values</li>
+
+</ul>
+
+<h3>Unstructured Data Processing</h3>
+
+<ul>
+
+<li>Resume parsing</li>
+<li>Skill extraction</li>
+<li>Education detection</li>
+<li>Experience calculation</li>
+
+</ul>
+
 </div>
+
+<div class="card">
+
+<h2>ELT Data Pipeline</h2>
+
+<ul>
+
+<li>Extract: workforce datasets uploaded securely</li>
+<li>Load: raw files stored in protected cloud storage</li>
+<li>Transform: Python analytics pipeline cleans and analyzes data</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<!-- SKILLS -->
+
+<div id="skills" class="section" style="display:none">
+
+<div class="card">
+
+<h2>Skill Gap Analysis</h2>
+
+<p>
+
+HR360 compares workforce skills with organizational needs
+to identify talent gaps and recommend development programs.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- RESUME -->
+
+<div id="resume" class="section" style="display:none">
+
+<div class="card">
+
+<h2>Resume Parsing</h2>
+
+<p>
+
+HR360 automatically extracts skills, education, and experience
+from candidate resumes to evaluate job fit and success probability.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- PREDICTIVE -->
+
+<div id="predictive" class="section" style="display:none">
+
+<div class="card">
+
+<h2>Predictive Workforce Insights</h2>
+
+<canvas id="bellCurve"></canvas>
+
+</div>
+
+</div>
+
+<!-- POWER BI -->
+
+<div id="powerbi" class="section" style="display:none">
+
+<div class="card">
+
+<h2>Power BI Workforce Dashboard</h2>
+
+<iframe class="powerbi" src="https://app.powerbi.com/view?r=YOUR_REPORT_ID"></iframe>
 
 </div>
 
@@ -251,11 +379,9 @@ Waiting for HR dataset upload...
 
 <div class="card">
 
-<h2>Datasets</h2>
+<h2>Uploaded Workforce Datasets</h2>
 
-<div id="datasetList">
-No datasets loaded yet.
-</div>
+<div id="datasetList">No datasets uploaded yet</div>
 
 </div>
 
@@ -265,9 +391,47 @@ No datasets loaded yet.
 
 <div id="upload" class="section" style="display:none">
 
-<div class="upload-box" id="dropZone">
+<div class="card">
 
-Drag HR datasets here
+<h2>Workforce Data Ingestion</h2>
+
+<p>
+
+Upload structured and unstructured workforce datasets including:
+
+</p>
+
+<ul>
+
+<li>Excel spreadsheets (.xlsx)</li>
+<li>CSV workforce datasets</li>
+<li>HRIS exports</li>
+<li>JSON data</li>
+<li>Resumes (PDF / DOCX)</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>Customer Data Protection</h2>
+
+<p>
+
+All uploaded datasets remain the property of the customer.
+Data is encrypted during transfer and processed through a secure
+ELT pipeline to generate workforce insights.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="upload-box">
+
+Drag & Drop Workforce Files
 
 <input type="file" id="fileInput" multiple>
 
@@ -275,9 +439,11 @@ Drag HR datasets here
 
 <div id="fileList"></div>
 
-<button class="btn" onclick="uploadFiles()">Upload HR Files</button>
+<button class="btn" onclick="uploadFiles()">Upload Files</button>
 
 <div id="uploadStatus"></div>
+
+</div>
 
 </div>
 
@@ -320,29 +486,26 @@ Drag HR datasets here
 
 <script>
 
-/* API */
-
-const API = "http://127.0.0.1:8000"
-
-let token = localStorage.getItem("token")
-
-/* NAVIGATION */
+const API =
+location.hostname === "localhost"
+? "http://127.0.0.1:8000"
+: "https://marec-hr360-api.onrender.com"
 
 function show(id){
+
 document.querySelectorAll(".section").forEach(s=>s.style.display="none")
 document.getElementById(id).style.display="block"
-}
 
-/* API CHECK */
+}
 
 async function checkAPI(){
 
 try{
 
-const res = await fetch(API)
+const res = await fetch(API+"/ping")
 
 document.getElementById("apiStatus").innerText =
-res.ok ? "Connected" : "Error"
+res.ok ? "Connected" : "Offline"
 
 }catch{
 
@@ -353,50 +516,6 @@ document.getElementById("apiStatus").innerText="Offline"
 }
 
 checkAPI()
-
-/* ACCOUNT */
-
-async function createAccount(){
-
-const company=document.getElementById("company").value
-const email=document.getElementById("email").value
-const password=document.getElementById("password").value
-
-await fetch(API+"/register",{
-
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({company,email,password})
-
-})
-
-alert("Workspace created")
-
-}
-
-async function login(){
-
-const email=document.getElementById("loginEmail").value
-const password=document.getElementById("loginPassword").value
-
-const res=await fetch(API+"/login",{
-
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({email,password})
-
-})
-
-const data=await res.json()
-
-token=data.token
-localStorage.setItem("token",token)
-
-document.getElementById("workspaceName").innerText=data.company
-
-}
-
-/* FILE HANDLING */
 
 let files=[]
 
@@ -422,39 +541,17 @@ files.forEach(file=>{
 let div=document.createElement("div")
 div.className="file-item"
 div.innerText=file.name
-
 fileList.appendChild(div)
 
 })
 
 }
 
-/* DRAG DROP */
-
-const dropZone=document.getElementById("dropZone")
-
-dropZone.addEventListener("dragover",(e)=>e.preventDefault())
-
-dropZone.addEventListener("drop",(e)=>{
-
-e.preventDefault()
-
-Array.from(e.dataTransfer.files).forEach(file=>{
-files.push(file)
-})
-
-renderFiles()
-
-})
-
-/* UPLOAD */
-
 async function uploadFiles(){
 
 if(files.length===0){
 
-alert("Upload HR files first")
-
+alert("Upload files first")
 return
 
 }
@@ -465,42 +562,14 @@ files.forEach(file=>{
 formData.append("files",file)
 })
 
-document.getElementById("uploadStatus").innerText="Uploading..."
-
 await fetch(API+"/upload",{
-
 method:"POST",
-headers:{
-Authorization:"Bearer "+token
-},
 body:formData
-
 })
 
-document.getElementById("uploadStatus").innerText="Upload complete"
-
-document.getElementById("pipelineStatus").innerText=
-"Python cleaning pipeline running..."
+document.getElementById("uploadStatus").innerText="Upload successful"
 
 }
-
-/* CHARTS */
-
-new Chart(document.getElementById("attritionChart"),{
-type:"line",
-data:{
-labels:["Jan","Feb","Mar","Apr","May"],
-datasets:[{label:"Attrition %",data:[9,10,11,12,14]}]
-}
-})
-
-new Chart(document.getElementById("funnelChart"),{
-type:"bar",
-data:{
-labels:["Applicants","Screen","Interview","Offer","Hired"],
-datasets:[{label:"Candidates",data:[500,200,120,60,40]}]
-}
-})
 
 </script>
 
