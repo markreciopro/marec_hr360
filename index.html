@@ -1,68 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MAREC HR360 | Workforce Intelligence Platform</title>
+<title>MAREC HR360 Workforce Intelligence Platform</title>
 
-<meta name="description" content="MAREC HR360 Workforce Intelligence Platform">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
 /* GLOBAL */
 
-*{margin:0;padding:0;box-sizing:border-box}
-
 body{
 font-family:'Inter',sans-serif;
 background:#050505;
 color:white;
+margin:0;
+overflow-x:hidden;
 }
 
-/* TOPBAR */
+/* BACKGROUND LOGO */
+
+body::before{
+content:"";
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:min(80vw,1000px);
+height:min(80vw,1000px);
+background:url("https://raw.githubusercontent.com/markreciopro/marec_hr360/main/Marec%20HR360.png") center center no-repeat;
+background-size:contain;
+opacity:0.035;
+z-index:0;
+pointer-events:none;
+}
+
+/* HEADER */
 
 .topbar{
-height:220px;
 display:flex;
-align-items:center;
 justify-content:space-between;
-padding:0 40px;
+align-items:center;
+padding:30px 50px;
+min-height:120px;
+  
 background:#0a0a0a;
 border-bottom:1px solid #1a1a1a;
+position:relative;
+z-index:2;
 }
 
 .logo{
 display:flex;
 align-items:center;
-gap:20px;
+gap:12px;
 }
 
 .logo img{
-height:140px;
+height:110px;
+width:auto;
+object-fit:contain;
+filter: drop-shadow(0 0 10px rgba(198,40,40,0.6));
 }
 
 .logo strong{
-font-size:32px;
-letter-spacing:1px;
-}
-
-.user-info{
-font-size:14px;
-color:#aaa;
+font-size:22px;
+letter-spacing:1.5px;
+font-weight:700;
 }
 
 /* LAYOUT */
 
 .container{
 display:flex;
-height:calc(100vh - 220px);
+min-height:calc(100vh - 80px);
+position:relative;
+z-index:2;
 }
 
 /* SIDEBAR */
@@ -70,28 +87,29 @@ height:calc(100vh - 220px);
 .sidebar{
 width:240px;
 background:#0a0a0a;
+padding:20px;
 border-right:1px solid #1a1a1a;
-padding:25px;
 }
 
 .sidebar h4{
-font-size:12px;
 color:#666;
+font-size:12px;
 margin-top:20px;
-margin-bottom:10px;
+margin-bottom:6px;
+letter-spacing:1px;
 }
 
 .sidebar button{
 width:100%;
 padding:10px;
-text-align:left;
+margin-top:4px;
 background:none;
 border:none;
 color:#aaa;
-border-radius:6px;
+text-align:left;
 cursor:pointer;
-margin-bottom:6px;
 font-size:14px;
+border-radius:4px;
 }
 
 .sidebar button:hover{
@@ -104,34 +122,54 @@ color:white;
 .main{
 flex:1;
 padding:40px;
-overflow-y:auto;
-}
-
-.workspace-header h1{
-font-size:30px;
-margin-bottom:5px;
-}
-
-.workspace-header p{
-color:#888;
+overflow:auto;
 }
 
 /* GRID */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:25px;
-margin-top:30px;
 }
 
-/* CARD */
+/* CARDS */
 
 .card{
 background:#0f0f0f;
-border:1px solid #222;
+padding:22px;
 border-radius:10px;
-padding:20px;
+border:1px solid #222;
+box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.card h3{
+margin-top:0;
+}
+
+/* KPI */
+
+.kpi{
+font-size:32px;
+font-weight:700;
+margin-top:10px;
+}
+
+/* BUTTON */
+
+.btn{
+background:#c62828;
+border:none;
+padding:10px 18px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+margin-top:10px;
+font-weight:600;
+}
+
+.btn:hover{
+background:#e53935;
 }
 
 /* INPUT */
@@ -143,52 +181,17 @@ margin-top:10px;
 background:#111;
 border:1px solid #333;
 color:white;
-border-radius:6px;
-}
-
-/* BUTTON */
-
-.btn{
-margin-top:15px;
-padding:12px 20px;
-background:#c62828;
-border:none;
-border-radius:6px;
-color:white;
-cursor:pointer;
-}
-
-.btn:hover{
-background:#e53935;
-}
-
-/* STATUS */
-
-.status{
-margin-top:10px;
-font-size:13px;
-color:#aaa;
-}
-
-/* FILE */
-
-.file{
-background:#111;
-border:1px solid #222;
-padding:10px;
-margin-top:10px;
-border-radius:6px;
+border-radius:4px;
 }
 
 /* UPLOAD */
 
 .upload-box{
-margin-top:20px;
-padding:40px;
 border:2px dashed #333;
-border-radius:10px;
+padding:40px;
 text-align:center;
-cursor:pointer;
+border-radius:10px;
+margin-top:20px;
 }
 
 .upload-box:hover{
@@ -198,8 +201,7 @@ border-color:#c62828;
 /* POWER BI */
 
 .powerbi{
-height:420px;
-margin-top:10px;
+height:650px;
 border:1px solid #222;
 border-radius:8px;
 overflow:hidden;
@@ -211,17 +213,25 @@ height:100%;
 border:none;
 }
 
-ul{
-margin-top:10px;
+/* PHILOSOPHY */
+
+.philosophy p{
 color:#aaa;
-padding-left:18px;
+line-height:1.6;
+}
+
+/* CHART */
+
+canvas{
+max-height:260px;
 }
 
 </style>
-
 </head>
 
 <body>
+
+<!-- HEADER -->
 
 <div class="topbar">
 
@@ -230,26 +240,36 @@ padding-left:18px;
 <strong>MAREC HR360</strong>
 </div>
 
-<div class="user-info">
-Workspace: <span id="workspaceName">Not Connected</span>
+<div>
+Workspace: <span id="workspaceName">Not Connected</span> |
+API: <span id="apiStatus">Checking...</span>
 </div>
 
 </div>
 
 <div class="container">
 
+<!-- SIDEBAR -->
+
 <div class="sidebar">
 
-<h4>WORKSPACE</h4>
+<h4>DASHBOARD</h4>
+<button onclick="show('dashboard')">Overview</button>
 
-<button onclick="show('dashboard')">Dashboard</button>
-<button onclick="show('insights')">Insights & Recommendations</button>
+<h4>ANALYTICS</h4>
+<button onclick="show('analytics')">Analytics</button>
+
+<h4>POWER BI</h4>
+<button onclick="show('powerbi')">Executive Dashboard</button>
+
+<h4>INSIGHTS</h4>
+<button onclick="show('insights')">Insights</button>
+
+<h4>DATA</h4>
 <button onclick="show('upload')">Upload Data</button>
 
 <h4>ACCOUNT</h4>
-
-<button onclick="show('account')">Login / Create Account</button>
-<button onclick="logout()">Logout</button>
+<button onclick="show('account')">Account</button>
 
 </div>
 
@@ -259,197 +279,57 @@ Workspace: <span id="workspaceName">Not Connected</span>
 
 <div id="dashboard" class="section">
 
-<div class="workspace-header">
+<div class="card philosophy">
 
-<h1>Workforce Intelligence Dashboard</h1>
+<h2>MAREC HR360 Philosophy</h2>
 
-<p>Transforming messy workforce data into strategic decision intelligence</p>
+<p>
+MAREC HR360 transforms workforce data into actionable intelligence.
+The platform combines HR analytics, recruiting analytics, talent intelligence,
+and predictive modeling to support strategic workforce decisions.
+</p>
 
-</div>
-
-<div class="card">
-
-<h2>MAREC HR360 Workforce Intelligence Platform</h2>
-
-<p style="margin-top:10px;color:#aaa">
-
-MAREC HR360 converts raw HR data into actionable workforce intelligence.  
-The platform integrates HR analytics, workforce analytics, recruiting analytics, and resume intelligence to support strategic workforce decisions.
-
+<p>
+By integrating structured HR datasets and unstructured talent data such as resumes,
+HR360 helps organizations understand workforce trends, identify skill gaps,
+and predict employee success.
 </p>
 
 </div>
 
-<!-- CAPABILITIES -->
+<h2 style="margin-top:30px">Workforce KPIs</h2>
 
 <div class="grid">
 
 <div class="card">
-
-<h3>HR Analytics</h3>
-
-<ul>
-<li>Employee engagement analytics</li>
-<li>Compensation benchmarking</li>
-<li>Performance distribution analysis</li>
-<li>Attrition risk detection</li>
-</ul>
-
+<h3>Attrition Rate</h3>
+<div class="kpi" id="kpiAttrition">12%</div>
 </div>
 
 <div class="card">
-
-<h3>Workforce Analytics</h3>
-
-<ul>
-<li>Headcount forecasting</li>
-<li>Labor cost analytics</li>
-<li>Department productivity metrics</li>
-<li>Skills mapping</li>
-</ul>
-
+<h3>Engagement</h3>
+<div class="kpi" id="kpiEngagement">74%</div>
 </div>
 
 <div class="card">
-
-<h3>Recruiting Analytics</h3>
-
-<ul>
-<li>Hiring funnel analytics</li>
-<li>Time-to-hire metrics</li>
-<li>Recruiting pipeline forecasting</li>
-<li>Offer acceptance analysis</li>
-</ul>
-
+<h3>Headcount</h3>
+<div class="kpi" id="kpiHeadcount">1250</div>
 </div>
 
 <div class="card">
-
-<h3>Resume Parsing</h3>
-
-<ul>
-<li>Automated resume parsing</li>
-<li>Skills extraction</li>
-<li>Candidate classification</li>
-<li>Talent pool analytics</li>
-</ul>
-
+<h3>Hiring Success</h3>
+<div class="kpi" id="kpiHiring">68%</div>
 </div>
 
 </div>
 
-<!-- DATA PIPELINE -->
+<h2 style="margin-top:30px">Workforce Analytics</h2>
 
 <div class="grid">
 
 <div class="card">
-
-<h3>Data Processing Pipeline</h3>
-
-<ul>
-<li>Extract data from CSV, Excel, JSON, and document sources</li>
-<li>Clean messy and inconsistent HR datasets</li>
-<li>Standardize workforce schemas</li>
-<li>Transform raw data into analytics-ready models</li>
-<li>Generate dashboards and workforce insights</li>
-</ul>
-
-</div>
-
-<div class="card">
-
-<h3>Data Privacy & Ownership</h3>
-
-<ul>
-<li>Customer data remains owned by the organization</li>
-<li>Files processed only for analytics generation</li>
-<li>Raw data automatically deleted after analysis</li>
-<li>Workspace isolation protects organizational privacy</li>
-<li>No long-term storage of sensitive workforce data</li>
-</ul>
-
-</div>
-
-</div>
-
-<!-- AI WORKFORCE INSIGHTS ENGINE -->
-
-<div class="card">
-
-<h2>AI Workforce Insights Engine</h2>
-
-<p style="margin-top:10px;color:#aaa">
-
-MAREC HR360 applies workforce intelligence models to identify patterns, predict risks, and generate strategic recommendations for HR leaders.
-
-</p>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>Descriptive Analytics</h3>
-
-<ul>
-<li>Workforce trends</li>
-<li>Employee engagement patterns</li>
-<li>Turnover monitoring</li>
-</ul>
-
-</div>
-
-<div class="card">
-
-<h3>Diagnostic Analytics</h3>
-
-<ul>
-<li>Root cause of attrition</li>
-<li>Compensation disparities</li>
-<li>Productivity drivers</li>
-</ul>
-
-</div>
-
-<div class="card">
-
-<h3>Predictive Analytics</h3>
-
-<ul>
-<li>Attrition prediction</li>
-<li>Hiring demand forecasting</li>
-<li>Workforce risk detection</li>
-</ul>
-
-</div>
-
-<div class="card">
-
-<h3>Prescriptive Recommendations</h3>
-
-<ul>
-<li>Retention strategies</li>
-<li>Compensation adjustments</li>
-<li>Recruiting optimization</li>
-</ul>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ANALYTICS CHARTS -->
-
-<div class="grid">
-
-<div class="card">
-<h3>Attrition Risk</h3>
+<h3>Attrition Trend</h3>
 <canvas id="attritionChart"></canvas>
-</div>
-
-<div class="card">
-<h3>Recruiting Funnel</h3>
-<canvas id="funnelChart"></canvas>
 </div>
 
 <div class="card">
@@ -458,15 +338,54 @@ MAREC HR360 applies workforce intelligence models to identify patterns, predict 
 </div>
 
 <div class="card">
+<h3>Employee Success Prediction</h3>
+<canvas id="successChart"></canvas>
+</div>
 
-<h3>Power BI Executive Dashboard</h3>
+</div>
+
+</div>
+
+<!-- ANALYTICS -->
+
+<div id="analytics" class="section" style="display:none">
+
+<h2>Analytics</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>HR Analytics</h3>
+<canvas id="hrChart"></canvas>
+</div>
+
+<div class="card">
+<h3>Workforce Analytics</h3>
+<canvas id="workforceChart"></canvas>
+</div>
+
+<div class="card">
+<h3>Recruiting Funnel</h3>
+<canvas id="funnelChart"></canvas>
+</div>
+
+<div class="card">
+<h3>Talent Intelligence</h3>
+<canvas id="resumeChart"></canvas>
+</div>
+
+</div>
+
+</div>
+
+<!-- POWER BI -->
+
+<div id="powerbi" class="section" style="display:none">
+
+<h2>Executive Workforce Dashboard</h2>
 
 <div class="powerbi">
-<iframe id="powerbiFrame"></iframe>
-</div>
-
-</div>
-
+<iframe src="PASTE_POWERBI_EMBED_URL"></iframe>
 </div>
 
 </div>
@@ -475,104 +394,23 @@ MAREC HR360 applies workforce intelligence models to identify patterns, predict 
 
 <div id="insights" class="section" style="display:none">
 
-<div class="workspace-header">
-
-<h1>Insights & Recommendations</h1>
-
-<p>AI-driven workforce intelligence</p>
-
-</div>
+<h2>AI Workforce Insights</h2>
 
 <div class="grid">
 
 <div class="card">
-
-<h3>Descriptive Insight</h3>
-
-<div class="file">Attrition increased by <strong>8%</strong> in Engineering.</div>
-
+<h3>Workforce Insights</h3>
+<div id="insightList"></div>
 </div>
 
 <div class="card">
-
-<h3>Diagnostic Insight</h3>
-
-<div class="file">Compensation levels <strong>12% below market</strong>.</div>
-
+<h3>Recommendations</h3>
+<div id="recommendList"></div>
 </div>
 
 <div class="card">
-
-<h3>Predictive Insight</h3>
-
-<div class="file">Attrition risk may reach <strong>18%</strong>.</div>
-
-</div>
-
-<div class="card">
-
-<h3>Recommended Actions</h3>
-
-<div class="file">
-• Adjust salary bands<br>
-• Introduce retention incentives<br>
-• Expand recruiting pipeline
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ACCOUNT -->
-
-<div id="account" class="section" style="display:none">
-
-<div class="workspace-header">
-
-<h1>Account Access</h1>
-
-<p>Login or create your HR360 workspace</p>
-
-</div>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>Login</h3>
-
-<form id="loginForm">
-
-<input type="email" id="loginEmail" placeholder="Email" required>
-<input type="password" id="loginPassword" placeholder="Password" required>
-
-<button class="btn">Login</button>
-
-</form>
-
-<div id="loginStatus" class="status"></div>
-
-</div>
-
-<div class="card">
-
-<h3>Create Account</h3>
-
-<form id="signupForm">
-
-<input id="signupName" placeholder="Full Name" required>
-<input id="signupEmail" type="email" placeholder="Email" required>
-<input id="signupPassword" type="password" placeholder="Password" required>
-<input id="signupWorkspace" placeholder="Workspace Name" required>
-
-<button class="btn">Create Account</button>
-
-</form>
-
-<div id="signupStatus" class="status"></div>
-
+<h3>Skill Development</h3>
+<div id="skillRecommend"></div>
 </div>
 
 </div>
@@ -583,29 +421,56 @@ MAREC HR360 applies workforce intelligence models to identify patterns, predict 
 
 <div id="upload" class="section" style="display:none">
 
-<div class="workspace-header">
+<h2>Upload HR Files</h2>
 
-<h1>Upload HR Data</h1>
+<div class="upload-box">
 
-<p>Upload messy HR datasets for automated analysis</p>
+<p>Drag & Drop HR datasets</p>
+<p>CSV • Excel • Resume PDF</p>
 
-</div>
-
-<div class="upload-box" id="uploadBox">
-
-Drag & Drop Files  
-<br><br>
-CSV • Excel • JSON • PDF
-
-<input type="file" id="fileInput" multiple hidden>
+<input type="file" id="fileInput" multiple>
 
 </div>
 
-<div id="fileList"></div>
+<button class="btn" id="uploadBtn">Send to HR360</button>
 
-<button class="btn" id="analyzeBtn">Send Files to Data Pipeline</button>
+<div id="uploadStatus"></div>
 
-<div id="uploadStatus" class="status"></div>
+</div>
+
+<!-- ACCOUNT -->
+
+<div id="account" class="section" style="display:none">
+
+<h2>Account</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Login</h3>
+
+<input placeholder="Email">
+<input type="password" placeholder="Password">
+
+<button class="btn">Login</button>
+
+</div>
+
+<div class="card">
+
+<h3>Create Workspace</h3>
+
+<input placeholder="Name">
+<input type="email" placeholder="Email">
+<input type="password" placeholder="Password">
+<input placeholder="Workspace Name">
+
+<button class="btn">Create</button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -615,17 +480,32 @@ CSV • Excel • JSON • PDF
 
 <script>
 
-/* NAVIGATION */
+const API="http://127.0.0.1:8000"
 
-function show(section){
-
+function show(id){
 document.querySelectorAll(".section").forEach(s=>s.style.display="none")
+document.getElementById(id).style.display="block"
+}
 
-document.getElementById(section).style.display="block"
+async function checkAPI(){
+
+try{
+
+let res = await fetch(API + "/")
+
+if(res.ok){
+document.getElementById("apiStatus").innerText="Connected"
+}else{
+document.getElementById("apiStatus").innerText="Error"
+}
+
+}catch{
+document.getElementById("apiStatus").innerText="Offline"
+}
 
 }
 
-show("dashboard")
+checkAPI()
 
 </script>
 
