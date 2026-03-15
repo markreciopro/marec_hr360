@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MAREC HR360 Workforce Intelligence</title>
+<title>MAREC HR360 Workforce Intelligence Platform</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
@@ -26,7 +26,7 @@ margin:0;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:24px 40px;
+padding:20px 40px;
 background:#0a0a0a;
 border-bottom:1px solid #1a1a1a;
 }
@@ -38,20 +38,23 @@ gap:10px;
 }
 
 .logo img{
-height:65px;
+height:60px;
+}
+
+.status{
+font-size:14px;
+color:#aaa;
 }
 
 /* LAYOUT */
 
 .container{
 display:flex;
-min-height:calc(100vh - 80px);
+min-height:calc(100vh - 70px);
 }
 
-/* SIDEBAR */
-
 .sidebar{
-width:230px;
+width:220px;
 background:#0a0a0a;
 padding:20px;
 border-right:1px solid #1a1a1a;
@@ -60,20 +63,19 @@ border-right:1px solid #1a1a1a;
 .sidebar button{
 width:100%;
 padding:10px;
-margin-top:5px;
+margin-top:6px;
 background:none;
 border:none;
 color:#aaa;
 text-align:left;
 cursor:pointer;
+border-radius:4px;
 }
 
 .sidebar button:hover{
 background:#111;
 color:white;
 }
-
-/* MAIN */
 
 .main{
 flex:1;
@@ -92,12 +94,12 @@ margin-bottom:20px;
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:20px;
 }
 
 .kpi{
-font-size:30px;
+font-size:28px;
 font-weight:700;
 }
 
@@ -119,7 +121,7 @@ border-radius:4px;
 background:#c62828;
 border:none;
 padding:10px 16px;
-margin-top:10px;
+margin-top:12px;
 color:white;
 cursor:pointer;
 border-radius:5px;
@@ -144,21 +146,6 @@ font-size:14px;
 border-bottom:1px solid #222;
 }
 
-/* POWER BI */
-
-.powerbi{
-height:600px;
-border:1px solid #222;
-border-radius:8px;
-overflow:hidden;
-}
-
-.powerbi iframe{
-width:100%;
-height:100%;
-border:none;
-}
-
 canvas{
 max-height:260px;
 }
@@ -169,6 +156,8 @@ max-height:260px;
 
 <body>
 
+<!-- HEADER -->
+
 <div class="topbar">
 
 <div class="logo">
@@ -176,7 +165,7 @@ max-height:260px;
 <strong>MAREC HR360</strong>
 </div>
 
-<div>
+<div class="status">
 Workspace: <span id="workspaceName">Guest</span> |
 API: <span id="apiStatus">Checking...</span>
 </div>
@@ -185,13 +174,14 @@ API: <span id="apiStatus">Checking...</span>
 
 <div class="container">
 
+<!-- SIDEBAR -->
+
 <div class="sidebar">
 
 <button onclick="show('dashboard')">Dashboard</button>
 <button onclick="show('analytics')">Analytics</button>
-<button onclick="show('predictions')">Predictions</button>
-<button onclick="show('insights')">AI Insights</button>
-<button onclick="show('powerbi')">Executive Dashboard</button>
+<button onclick="show('pipeline')">Pipeline</button>
+<button onclick="show('datasets')">Datasets</button>
 <button onclick="show('upload')">Upload HR Data</button>
 <button onclick="show('account')">Account</button>
 
@@ -234,47 +224,38 @@ API: <span id="apiStatus">Checking...</span>
 <div id="analytics" class="section" style="display:none">
 
 <div class="card">
-<h2>Recruiting Funnel</h2>
+<h3>Recruiting Funnel</h3>
 <canvas id="funnelChart"></canvas>
 </div>
 
 </div>
 
-<!-- PREDICTIONS -->
+<!-- PIPELINE -->
 
-<div id="predictions" class="section" style="display:none">
-
-<div class="card">
-<h2>Performance Bell Curve</h2>
-<canvas id="bellCurve"></canvas>
-</div>
-
-</div>
-
-<!-- INSIGHTS -->
-
-<div id="insights" class="section" style="display:none">
+<div id="pipeline" class="section" style="display:none">
 
 <div class="card">
-<h2>AI Workforce Insights</h2>
+<h2>Data Processing Pipeline</h2>
 
-<ul>
-<li>Attrition risk increasing in Sales</li>
-<li>Engineering engagement improving</li>
-<li>Recruiting funnel below benchmark</li>
-</ul>
-
+<div id="pipelineStatus">
+Waiting for HR dataset upload...
 </div>
 
 </div>
 
-<!-- POWER BI -->
+</div>
 
-<div id="powerbi" class="section" style="display:none">
+<!-- DATASETS -->
 
-<div class="powerbi">
+<div id="datasets" class="section" style="display:none">
 
-<iframe src="PASTE_POWERBI_EMBED_URL"></iframe>
+<div class="card">
+
+<h2>Datasets</h2>
+
+<div id="datasetList">
+No datasets loaded yet.
+</div>
 
 </div>
 
@@ -286,7 +267,7 @@ API: <span id="apiStatus">Checking...</span>
 
 <div class="upload-box" id="dropZone">
 
-Drag HR Files Here
+Drag HR datasets here
 
 <input type="file" id="fileInput" multiple>
 
@@ -294,7 +275,7 @@ Drag HR Files Here
 
 <div id="fileList"></div>
 
-<button class="btn" onclick="uploadFiles()">Send to HR360</button>
+<button class="btn" onclick="uploadFiles()">Upload HR Files</button>
 
 <div id="uploadStatus"></div>
 
@@ -308,13 +289,13 @@ Drag HR Files Here
 
 <div class="card">
 
-<h2>Create Account</h2>
+<h2>Create Workspace</h2>
 
 <input id="company" placeholder="Company Name">
 <input id="email" placeholder="Email">
 <input id="password" type="password" placeholder="Password">
 
-<button class="btn" onclick="createAccount()">Create</button>
+<button class="btn" onclick="createAccount()">Create Workspace</button>
 
 </div>
 
@@ -339,34 +320,41 @@ Drag HR Files Here
 
 <script>
 
-const API="http://127.0.0.1:8000"
+/* API */
+
+const API = "http://127.0.0.1:8000"
+
+let token = localStorage.getItem("token")
+
+/* NAVIGATION */
 
 function show(id){
-
 document.querySelectorAll(".section").forEach(s=>s.style.display="none")
 document.getElementById(id).style.display="block"
-
 }
+
+/* API CHECK */
 
 async function checkAPI(){
 
 try{
 
-let res=await fetch(API)
+const res = await fetch(API)
 
-if(res.ok){
-document.getElementById("apiStatus").innerText="Connected"
-}else{
-document.getElementById("apiStatus").innerText="Error"
-}
+document.getElementById("apiStatus").innerText =
+res.ok ? "Connected" : "Error"
 
 }catch{
+
 document.getElementById("apiStatus").innerText="Offline"
+
 }
 
 }
 
 checkAPI()
+
+/* ACCOUNT */
 
 async function createAccount(){
 
@@ -382,7 +370,7 @@ body:JSON.stringify({company,email,password})
 
 })
 
-alert("Account created")
+alert("Workspace created")
 
 }
 
@@ -401,17 +389,26 @@ body:JSON.stringify({email,password})
 
 const data=await res.json()
 
-localStorage.setItem("token",data.token)
+token=data.token
+localStorage.setItem("token",token)
 
 document.getElementById("workspaceName").innerText=data.company
 
 }
 
+/* FILE HANDLING */
+
 let files=[]
+
+const fileInput=document.getElementById("fileInput")
+const fileList=document.getElementById("fileList")
 
 fileInput.addEventListener("change",(e)=>{
 
-Array.from(e.target.files).forEach(f=>files.push(f))
+Array.from(e.target.files).forEach(file=>{
+files.push(file)
+})
+
 renderFiles()
 
 })
@@ -420,34 +417,74 @@ function renderFiles(){
 
 fileList.innerHTML=""
 
-files.forEach(f=>{
+files.forEach(file=>{
 
 let div=document.createElement("div")
 div.className="file-item"
-div.innerText=f.name
+div.innerText=file.name
+
 fileList.appendChild(div)
 
 })
 
 }
 
+/* DRAG DROP */
+
+const dropZone=document.getElementById("dropZone")
+
+dropZone.addEventListener("dragover",(e)=>e.preventDefault())
+
+dropZone.addEventListener("drop",(e)=>{
+
+e.preventDefault()
+
+Array.from(e.dataTransfer.files).forEach(file=>{
+files.push(file)
+})
+
+renderFiles()
+
+})
+
+/* UPLOAD */
+
 async function uploadFiles(){
+
+if(files.length===0){
+
+alert("Upload HR files first")
+
+return
+
+}
 
 let formData=new FormData()
 
-files.forEach(f=>formData.append("files",f))
+files.forEach(file=>{
+formData.append("files",file)
+})
+
+document.getElementById("uploadStatus").innerText="Uploading..."
 
 await fetch(API+"/upload",{
 
 method:"POST",
-headers:{Authorization:"Bearer "+localStorage.getItem("token")},
+headers:{
+Authorization:"Bearer "+token
+},
 body:formData
 
 })
 
-uploadStatus.innerText="Files uploaded for Python processing"
+document.getElementById("uploadStatus").innerText="Upload complete"
+
+document.getElementById("pipelineStatus").innerText=
+"Python cleaning pipeline running..."
 
 }
+
+/* CHARTS */
 
 new Chart(document.getElementById("attritionChart"),{
 type:"line",
@@ -462,14 +499,6 @@ type:"bar",
 data:{
 labels:["Applicants","Screen","Interview","Offer","Hired"],
 datasets:[{label:"Candidates",data:[500,200,120,60,40]}]
-}
-})
-
-new Chart(document.getElementById("bellCurve"),{
-type:"line",
-data:{
-labels:["Low","Below Avg","Average","Above Avg","High"],
-datasets:[{label:"Performance Distribution",data:[5,15,50,20,10]}]
 }
 })
 
