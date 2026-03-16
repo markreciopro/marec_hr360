@@ -10,35 +10,57 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
 body{
 font-family:'Inter',sans-serif;
 background:#050505;
 color:white;
-margin:0;
+overflow-x:hidden;
+}
+
+/* BACKGROUND ANIMATION */
+
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-1;
+background:linear-gradient(180deg,#050505,#0b0b0b);
 }
 
 /* HEADER */
 
 .topbar{
+
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:50px 80px;
-background:#0a0a0a;
+padding:35px 70px;
+
+background:rgba(10,10,10,0.85);
+backdrop-filter:blur(10px);
+
 border-bottom:1px solid #1a1a1a;
 }
 
 .logo{
+
 display:flex;
 align-items:center;
 gap:25px;
 }
 
 .logo img{
-height:210px;
+height:170px;
 }
 
 .logo-title{
@@ -56,105 +78,230 @@ color:#aaa;
 
 .container{
 display:flex;
-min-height:calc(100vh - 150px);
+min-height:calc(100vh - 120px);
 }
 
+/* SIDEBAR */
+
 .sidebar{
-width:300px;
-background:#0a0a0a;
+
+width:270px;
+background:rgba(10,10,10,.85);
+backdrop-filter:blur(12px);
+
 padding:30px;
 border-right:1px solid #1a1a1a;
 }
 
 .sidebar button{
+
 width:100%;
 padding:13px;
-margin-top:6px;
+margin-top:8px;
+
 background:none;
 border:none;
+
 color:#aaa;
 text-align:left;
+
 cursor:pointer;
-border-radius:5px;
-font-size:15px;
+
+border-radius:6px;
+font-size:14px;
+
+transition:.25s;
 }
 
 .sidebar button:hover{
-background:#111;
+background:#141414;
 color:white;
 }
 
+.sidebar button.active{
+background:#151515;
+color:white;
+border-left:3px solid #c62828;
+}
+
+/* MAIN */
+
 .main{
+
 flex:1;
 padding:50px;
+
 }
 
 /* CARDS */
 
 .card{
-background:#0f0f0f;
-border:1px solid #222;
-border-radius:10px;
+
+background:rgba(15,15,15,0.8);
+
+border:1px solid #242424;
+border-radius:12px;
+
 padding:28px;
 margin-bottom:25px;
+
+transition:.3s;
+
+backdrop-filter:blur(8px);
+
 }
+
+.card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 15px 40px rgba(0,0,0,.6);
+
+border-color:#333;
+
+}
+
+/* GRID */
 
 .grid{
+
 display:grid;
+
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
+
+gap:25px;
+
 }
+
+/* KPI */
 
 .kpi{
-font-size:34px;
+
+font-size:40px;
+
 font-weight:700;
+
+margin-top:10px;
+
+color:#e53935;
+
 }
 
-.upload-box{
-border:2px dashed #333;
-padding:65px;
-text-align:center;
-border-radius:10px;
-}
+/* DATASET LIST */
 
 .file-item{
+
 padding:8px;
+
 font-size:14px;
+
 border-bottom:1px solid #222;
+
 }
 
-.powerbi{
-width:100%;
-height:650px;
-border:none;
+/* UPLOAD */
+
+.upload-box{
+
+border:2px dashed #333;
+
+padding:70px;
+
+text-align:center;
+
+border-radius:12px;
+
+transition:.3s;
+
 }
 
-input{
-width:100%;
-padding:12px;
-margin-top:10px;
+.upload-box:hover{
+
+border-color:#c62828;
+
 background:#111;
-border:1px solid #333;
-color:white;
-border-radius:4px;
+
 }
+
+/* BUTTON */
 
 .btn{
+
 background:#c62828;
+
 border:none;
-padding:12px 18px;
-margin-top:14px;
+
+padding:12px 20px;
+
+margin-top:15px;
+
 color:white;
+
 cursor:pointer;
-border-radius:5px;
+
+border-radius:6px;
+
+font-weight:600;
+
 }
 
 .btn:hover{
+
 background:#e53935;
+
 }
 
+/* INPUT */
+
+input{
+
+width:100%;
+
+padding:12px;
+
+margin-top:10px;
+
+background:#111;
+
+border:1px solid #333;
+
+color:white;
+
+border-radius:5px;
+
+}
+
+/* CHART */
+
 canvas{
+
 max-height:320px;
+
+}
+
+/* POWER BI */
+
+.powerbi{
+
+width:100%;
+height:650px;
+border:none;
+
+}
+
+/* ANIMATION */
+
+.section{
+
+animation:fade .4s ease;
+
+}
+
+@keyframes fade{
+
+from{opacity:0;transform:translateY(8px)}
+to{opacity:1;transform:translateY(0)}
+
 }
 
 </style>
@@ -163,38 +310,55 @@ max-height:320px;
 
 <body>
 
+<div id="particles-js"></div>
+
+<!-- HEADER -->
+
 <div class="topbar">
 
 <div class="logo">
+
 <img src="https://raw.githubusercontent.com/markreciopro/marec_hr360/main/Marec%20HR360.png">
+
 <div class="logo-title">MAREC HR360</div>
+
 </div>
 
-<div class="status">
-Workspace: <span id="workspaceName">Guest</span>
+
+
 </div>
 
 </div>
 
 <div class="container">
 
+<!-- SIDEBAR -->
+
 <div class="sidebar">
 
-<button onclick="show('dashboard')">Dashboard</button>
-<button onclick="show('philosophy')">HR360 Philosophy</button>
-<button onclick="show('hranalytics')">HR Analytics</button>
-<button onclick="show('recruiting')">Recruiting Analytics</button>
-<button onclick="show('workforce')">Workforce Analytics</button>
-<button onclick="show('skills')">Skill Gap Analysis</button>
-<button onclick="show('resume')">Resume Parsing</button>
-<button onclick="show('predictive')">Predictive Insights</button>
-<button onclick="show('pipeline')">Data Cleaning Engine</button>
-<button onclick="show('powerbi')">Power BI Dashboard</button>
-<button onclick="show('datasets')">Datasets</button>
-<button onclick="show('upload')">Workforce Data Ingestion</button>
-<button onclick="show('account')">Account</button>
+<button class="active" onclick="show('dashboard',this)">Dashboard</button>
+
+<button onclick="show('philosophy',this)">HR360 Philosophy</button>
+
+<button onclick="show('skills',this)">Skill Gap Analysis</button>
+
+<button onclick="show('resume',this)">Resume Parsing</button>
+
+<button onclick="show('predictive',this)">Predictive Insights</button>
+
+<button onclick="show('pipeline',this)">Data Cleaning Engine</button>
+
+<button onclick="show('powerbi',this)">Power BI Dashboard</button>
+
+<button onclick="show('datasets',this)">Datasets</button>
+
+<button onclick="show('upload',this)">Workforce Data Ingestion</button>
+
+<button onclick="show('account',this)">Account</button>
 
 </div>
+
+<!-- MAIN -->
 
 <div class="main">
 
@@ -206,24 +370,42 @@ Workspace: <span id="workspaceName">Guest</span>
 
 <div class="card">
 <h3>Attrition Rate</h3>
-<div class="kpi">--</div>
+<div class="kpi">6.2%</div>
 </div>
 
 <div class="card">
-<h3>Time to Hire</h3>
-<div class="kpi">--</div>
+<h3>Time To Hire</h3>
+<div class="kpi">28 Days</div>
 </div>
 
 <div class="card">
 <h3>Total Workforce</h3>
-<div class="kpi">--</div>
+<div class="kpi">1248</div>
 </div>
 
 </div>
 
 <div class="card">
+
 <h3>Attrition Trend</h3>
+
 <canvas id="attritionChart"></canvas>
+
+</div>
+
+<div class="card">
+
+<h3>AI HR Insights</h3>
+
+<p>
+
+MAREC HR360 analyzes workforce datasets to identify retention risk,
+workforce skill gaps, hiring velocity trends, and department turnover.
+
+Predictive analytics models help leadership make **data-driven workforce decisions**.
+
+</p>
+
 </div>
 
 </div>
@@ -238,18 +420,29 @@ Workspace: <span id="workspaceName">Guest</span>
 
 <p>
 
-MAREC HR360 transforms messy workforce data into actionable intelligence.
-Instead of static HR reports, HR360 uses automated analytics,
-data cleaning, and predictive modeling to help organizations
-understand workforce trends and make strategic decisions.
+MAREC HR360 transforms fragmented HR datasets into
+predictive workforce intelligence.
+
+The platform automates workforce analytics pipelines
+including:
 
 </p>
 
-</div>
+<ul>
+
+<li>HR data ingestion</li>
+<li>Automated cleaning pipelines</li>
+<li>Predictive attrition modeling</li>
+<li>Workforce skill gap analysis</li>
+<li>Recruitment analytics</li>
+
+</ul>
 
 </div>
 
-<!-- DATA CLEANING ENGINE -->
+</div>
+
+<!-- DATA CLEANING -->
 
 <div id="pipeline" class="section" style="display:none">
 
@@ -257,48 +450,13 @@ understand workforce trends and make strategic decisions.
 
 <h2>HR360 Data Cleaning Engine</h2>
 
-<p>
-
-Organizations often upload messy HR data. HR360 automatically
-standardizes and cleans workforce datasets before analytics
-are generated.
-
-</p>
-
-<h3>Structured Data Cleaning</h3>
-
 <ul>
 
-<li>Standardize column names</li>
+<li>Standardize column naming</li>
 <li>Remove duplicate employee records</li>
 <li>Normalize department naming</li>
 <li>Convert inconsistent date formats</li>
-<li>Handle missing values</li>
-
-</ul>
-
-<h3>Unstructured Data Processing</h3>
-
-<ul>
-
-<li>Resume parsing</li>
-<li>Skill extraction</li>
-<li>Education detection</li>
-<li>Experience calculation</li>
-
-</ul>
-
-</div>
-
-<div class="card">
-
-<h2>ELT Data Pipeline</h2>
-
-<ul>
-
-<li>Extract: workforce datasets uploaded securely</li>
-<li>Load: raw files stored in protected cloud storage</li>
-<li>Transform: Python analytics pipeline cleans and analyzes data</li>
+<li>Handle missing workforce values</li>
 
 </ul>
 
@@ -316,8 +474,8 @@ are generated.
 
 <p>
 
-HR360 compares workforce skills with organizational needs
-to identify talent gaps and recommend development programs.
+Identify missing workforce capabilities by comparing
+current employee skills with organizational future needs.
 
 </p>
 
@@ -335,8 +493,8 @@ to identify talent gaps and recommend development programs.
 
 <p>
 
-HR360 automatically extracts skills, education, and experience
-from candidate resumes to evaluate job fit and success probability.
+Upload candidate resumes and automatically extract
+skills, education, certifications, and work experience.
 
 </p>
 
@@ -350,7 +508,7 @@ from candidate resumes to evaluate job fit and success probability.
 
 <div class="card">
 
-<h2>Predictive Workforce Insights</h2>
+<h2>Attrition Probability Distribution</h2>
 
 <canvas id="bellCurve"></canvas>
 
@@ -366,7 +524,9 @@ from candidate resumes to evaluate job fit and success probability.
 
 <h2>Power BI Workforce Dashboard</h2>
 
-<iframe class="powerbi" src="https://app.powerbi.com/view?r=YOUR_REPORT_ID"></iframe>
+<iframe class="powerbi"
+src="https://app.powerbi.com/view?r=YOUR_REPORT_ID">
+</iframe>
 
 </div>
 
@@ -394,43 +554,11 @@ from candidate resumes to evaluate job fit and success probability.
 
 <h2>Workforce Data Ingestion</h2>
 
-<p>
-
-Upload structured and unstructured workforce datasets including:
-
-</p>
-
-<ul>
-
-<li>Excel spreadsheets (.xlsx)</li>
-<li>CSV workforce datasets</li>
-<li>HRIS exports</li>
-<li>JSON data</li>
-<li>Resumes (PDF / DOCX)</li>
-
-</ul>
-
-</div>
-
-<div class="card">
-
-<h2>Customer Data Protection</h2>
-
-<p>
-
-All uploaded datasets remain the property of the customer.
-Data is encrypted during transfer and processed through a secure
-ELT pipeline to generate workforce insights.
-
-</p>
-
-</div>
-
-<div class="card">
-
 <div class="upload-box">
 
 Drag & Drop Workforce Files
+
+<br><br>
 
 <input type="file" id="fileInput" multiple>
 
@@ -456,11 +584,11 @@ Drag & Drop Workforce Files
 
 <h2>Create Workspace</h2>
 
-<input id="company" placeholder="Company Name">
-<input id="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
+<input placeholder="Company Name">
+<input placeholder="Email">
+<input type="password" placeholder="Password">
 
-<button class="btn" onclick="createAccount()">Create Workspace</button>
+<button class="btn">Create Workspace</button>
 
 </div>
 
@@ -468,10 +596,10 @@ Drag & Drop Workforce Files
 
 <h2>Login</h2>
 
-<input id="loginEmail" placeholder="Email">
-<input id="loginPassword" type="password" placeholder="Password">
+<input placeholder="Email">
+<input type="password" placeholder="Password">
 
-<button class="btn" onclick="login()">Login</button>
+<button class="btn">Login</button>
 
 </div>
 
@@ -485,17 +613,30 @@ Drag & Drop Workforce Files
 
 <script>
 
+/* API */
+
 const API =
-location.hostname === "localhost"
+location.hostname==="localhost"
 ? "http://127.0.0.1:8000"
 : "https://marec-hr360-api.onrender.com"
 
-function show(id){
+/* NAV */
 
-document.querySelectorAll(".section").forEach(s=>s.style.display="none")
+function show(id,btn){
+
+document.querySelectorAll(".section")
+.forEach(s=>s.style.display="none")
+
+document.querySelectorAll(".sidebar button")
+.forEach(b=>b.classList.remove("active"))
+
 document.getElementById(id).style.display="block"
 
+btn.classList.add("active")
+
 }
+
+/* API CHECK */
 
 async function checkAPI(){
 
@@ -516,16 +657,17 @@ document.getElementById("apiStatus").innerText="Offline"
 
 checkAPI()
 
+/* FILE SYSTEM */
+
 let files=[]
 
 const fileInput=document.getElementById("fileInput")
 const fileList=document.getElementById("fileList")
+const datasetList=document.getElementById("datasetList")
 
 fileInput.addEventListener("change",(e)=>{
 
-Array.from(e.target.files).forEach(file=>{
-files.push(file)
-})
+Array.from(e.target.files).forEach(file=>files.push(file))
 
 renderFiles()
 
@@ -538,13 +680,18 @@ fileList.innerHTML=""
 files.forEach(file=>{
 
 let div=document.createElement("div")
+
 div.className="file-item"
+
 div.innerText=file.name
+
 fileList.appendChild(div)
 
 })
 
 }
+
+/* UPLOAD */
 
 async function uploadFiles(){
 
@@ -557,9 +704,7 @@ return
 
 let formData=new FormData()
 
-files.forEach(file=>{
-formData.append("files",file)
-})
+files.forEach(file=>formData.append("files",file))
 
 await fetch(API+"/upload",{
 method:"POST",
@@ -568,7 +713,65 @@ body:formData
 
 document.getElementById("uploadStatus").innerText="Upload successful"
 
+datasetList.innerHTML = files.map(f=>"<div class='file-item'>"+f.name+"</div>").join("")
+
+document.getElementById("datasetCount").innerText = files.length
+
 }
+
+/* CHARTS */
+
+new Chart(
+
+document.getElementById("attritionChart"),
+
+{
+type:"line",
+data:{
+labels:["Jan","Feb","Mar","Apr","May","Jun"],
+datasets:[{
+label:"Attrition %",
+data:[6,7,5,8,6,7],
+borderColor:"#e53935",
+tension:.3
+}]
+}
+})
+
+new Chart(
+
+document.getElementById("bellCurve"),
+
+{
+type:"line",
+data:{
+labels:[-3,-2,-1,0,1,2,3],
+datasets:[{
+label:"Attrition Probability",
+data:[1,4,9,12,9,4,1],
+borderColor:"#e53935",
+tension:.4
+}]
+}
+})
+
+/* PARTICLES */
+
+particlesJS("particles-js",{
+
+particles:{
+number:{value:70},
+color:{value:"#c62828"},
+line_linked:{
+enable:true,
+distance:140,
+color:"#c62828",
+opacity:0.4
+},
+move:{speed:1}
+}
+
+})
 
 </script>
 
