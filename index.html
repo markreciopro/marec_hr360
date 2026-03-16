@@ -9,10 +9,12 @@
 <title>MAREC HR360 Workforce Intelligence Platform</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
+
+/* GLOBAL */
 
 *{
 box-sizing:border-box;
@@ -27,14 +29,29 @@ color:white;
 overflow-x:hidden;
 }
 
-/* BACKGROUND ANIMATION */
+/* AI NETWORK BACKGROUND */
 
-#particles-js{
+#ai-bg{
+
 position:fixed;
 width:100%;
 height:100%;
 z-index:-1;
-background:linear-gradient(180deg,#050505,#0b0b0b);
+
+background:
+radial-gradient(circle at 20% 20%, rgba(200,40,40,0.2), transparent 40%),
+radial-gradient(circle at 80% 40%, rgba(255,50,50,0.15), transparent 40%),
+radial-gradient(circle at 40% 80%, rgba(200,40,40,0.15), transparent 40%);
+
+animation:bgMove 20s infinite alternate;
+
+}
+
+@keyframes bgMove{
+
+0%{transform:translateY(0)}
+100%{transform:translateY(-40px)}
+
 }
 
 /* HEADER */
@@ -44,34 +61,41 @@ background:linear-gradient(180deg,#050505,#0b0b0b);
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:35px 70px;
+
+padding:30px 70px;
 
 background:rgba(10,10,10,0.85);
 backdrop-filter:blur(10px);
 
 border-bottom:1px solid #1a1a1a;
+
 }
 
 .logo{
 
 display:flex;
 align-items:center;
-gap:25px;
+gap:20px;
+
 }
 
 .logo img{
-height:170px;
+height:150px;
 }
 
 .logo-title{
-font-size:36px;
+
+font-size:34px;
 font-weight:700;
 letter-spacing:2px;
+
 }
 
 .status{
+
 font-size:14px;
 color:#aaa;
+
 }
 
 /* LAYOUT */
@@ -85,18 +109,19 @@ min-height:calc(100vh - 120px);
 
 .sidebar{
 
-width:270px;
+width:280px;
 background:rgba(10,10,10,.85);
-backdrop-filter:blur(12px);
 
 padding:30px;
+
 border-right:1px solid #1a1a1a;
+
 }
 
 .sidebar button{
 
 width:100%;
-padding:13px;
+padding:12px;
 margin-top:8px;
 
 background:none;
@@ -111,17 +136,23 @@ border-radius:6px;
 font-size:14px;
 
 transition:.25s;
+
 }
 
 .sidebar button:hover{
+
 background:#141414;
 color:white;
+
 }
 
 .sidebar button.active{
+
 background:#151515;
 color:white;
+
 border-left:3px solid #c62828;
+
 }
 
 /* MAIN */
@@ -133,16 +164,30 @@ padding:50px;
 
 }
 
-/* CARDS */
+/* GRID */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+
+}
+
+/* CARD */
 
 .card{
 
 background:rgba(15,15,15,0.8);
 
 border:1px solid #242424;
+
 border-radius:12px;
 
 padding:28px;
+
 margin-bottom:25px;
 
 transition:.3s;
@@ -161,18 +206,6 @@ border-color:#333;
 
 }
 
-/* GRID */
-
-.grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
-gap:25px;
-
-}
-
 /* KPI */
 
 .kpi{
@@ -187,12 +220,11 @@ color:#e53935;
 
 }
 
-/* DATASET LIST */
+/* FILE LIST */
 
 .file-item{
 
 padding:8px;
-
 font-size:14px;
 
 border-bottom:1px solid #222;
@@ -205,7 +237,7 @@ border-bottom:1px solid #222;
 
 border:2px dashed #333;
 
-padding:70px;
+padding:60px;
 
 text-align:center;
 
@@ -228,7 +260,6 @@ background:#111;
 .btn{
 
 background:#c62828;
-
 border:none;
 
 padding:12px 20px;
@@ -246,9 +277,7 @@ font-weight:600;
 }
 
 .btn:hover{
-
 background:#e53935;
-
 }
 
 /* INPUT */
@@ -256,7 +285,6 @@ background:#e53935;
 input{
 
 width:100%;
-
 padding:12px;
 
 margin-top:10px;
@@ -285,16 +313,15 @@ max-height:320px;
 
 width:100%;
 height:650px;
+
 border:none;
 
 }
 
-/* ANIMATION */
+/* SECTION */
 
 .section{
-
 animation:fade .4s ease;
-
 }
 
 @keyframes fade{
@@ -310,7 +337,7 @@ to{opacity:1;transform:translateY(0)}
 
 <body>
 
-<div id="particles-js"></div>
+<div id="ai-bg"></div>
 
 <!-- HEADER -->
 
@@ -324,7 +351,10 @@ to{opacity:1;transform:translateY(0)}
 
 </div>
 
+<div class="status">
 
+API Status:
+<span id="apiStatus">Checking...</span>
 
 </div>
 
@@ -338,7 +368,11 @@ to{opacity:1;transform:translateY(0)}
 
 <button class="active" onclick="show('dashboard',this)">Dashboard</button>
 
-<button onclick="show('philosophy',this)">HR360 Philosophy</button>
+<button onclick="show('recruiting',this)">Recruiting Analytics</button>
+
+<button onclick="show('workforce',this)">Workforce Planning</button>
+
+<button onclick="show('diversity',this)">Diversity Analytics</button>
 
 <button onclick="show('skills',this)">Skill Gap Analysis</button>
 
@@ -383,6 +417,11 @@ to{opacity:1;transform:translateY(0)}
 <div class="kpi">1248</div>
 </div>
 
+<div class="card">
+<h3>Hiring Pipeline</h3>
+<div class="kpi">312</div>
+</div>
+
 </div>
 
 <div class="card">
@@ -395,14 +434,19 @@ to{opacity:1;transform:translateY(0)}
 
 <div class="card">
 
-<h3>AI HR Insights</h3>
+<h3>AI Workforce Insights</h3>
 
 <p>
 
-MAREC HR360 analyzes workforce datasets to identify retention risk,
-workforce skill gaps, hiring velocity trends, and department turnover.
+MAREC HR360 automatically analyzes workforce datasets to identify:
 
-Predictive analytics models help leadership make **data-driven workforce decisions**.
+• Retention risks  
+• Hiring bottlenecks  
+• Department turnover  
+• Workforce capacity forecasting  
+• Recruitment funnel efficiency  
+
+AI-driven analytics empower HR leaders to make **data-driven talent decisions.**
 
 </p>
 
@@ -410,31 +454,70 @@ Predictive analytics models help leadership make **data-driven workforce decisio
 
 </div>
 
-<!-- PHILOSOPHY -->
+<!-- RECRUITING ANALYTICS -->
 
-<div id="philosophy" class="section" style="display:none">
+<div id="recruiting" class="section" style="display:none">
 
 <div class="card">
 
-<h2>MAREC HR360 Philosophy</h2>
+<h2>Recruiting Funnel Analytics</h2>
 
-<p>
+<canvas id="recruitingChart"></canvas>
 
-MAREC HR360 transforms fragmented HR datasets into
-predictive workforce intelligence.
+</div>
 
-The platform automates workforce analytics pipelines
-including:
+<div class="card">
 
-</p>
+<h2>Hiring Velocity Insights</h2>
 
 <ul>
 
-<li>HR data ingestion</li>
-<li>Automated cleaning pipelines</li>
-<li>Predictive attrition modeling</li>
-<li>Workforce skill gap analysis</li>
-<li>Recruitment analytics</li>
+<li>Application to interview ratio</li>
+<li>Offer acceptance rate</li>
+<li>Source of hire effectiveness</li>
+<li>Recruiter productivity</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<!-- WORKFORCE PLANNING -->
+
+<div id="workforce" class="section" style="display:none">
+
+<div class="card">
+
+<h2>Workforce Planning</h2>
+
+<p>
+
+Forecast future workforce demand using predictive headcount modeling.
+
+Identify departments with projected workforce shortages
+and optimize hiring strategies.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- DIVERSITY -->
+
+<div id="diversity" class="section" style="display:none">
+
+<div class="card">
+
+<h2>Diversity & Inclusion Analytics</h2>
+
+<ul>
+
+<li>Gender representation</li>
+<li>Ethnicity representation</li>
+<li>Leadership diversity</li>
+<li>Pay equity analysis</li>
 
 </ul>
 
@@ -452,11 +535,11 @@ including:
 
 <ul>
 
-<li>Standardize column naming</li>
-<li>Remove duplicate employee records</li>
-<li>Normalize department naming</li>
-<li>Convert inconsistent date formats</li>
-<li>Handle missing workforce values</li>
+<li>Column standardization</li>
+<li>Duplicate record removal</li>
+<li>Department normalization</li>
+<li>Date format corrections</li>
+<li>Missing workforce data handling</li>
 
 </ul>
 
@@ -474,8 +557,8 @@ including:
 
 <p>
 
-Identify missing workforce capabilities by comparing
-current employee skills with organizational future needs.
+Compare workforce capabilities against future strategic
+organizational needs to identify critical skill shortages.
 
 </p>
 
@@ -493,8 +576,14 @@ current employee skills with organizational future needs.
 
 <p>
 
-Upload candidate resumes and automatically extract
-skills, education, certifications, and work experience.
+Upload resumes to automatically extract:
+
+• Skills  
+• Certifications  
+• Education  
+• Work history  
+
+AI models classify candidate capabilities for recruiting analytics.
 
 </p>
 
@@ -522,7 +611,7 @@ skills, education, certifications, and work experience.
 
 <div class="card">
 
-<h2>Power BI Workforce Dashboard</h2>
+<h2>Microsoft Power BI Workforce Dashboard</h2>
 
 <iframe class="powerbi"
 src="https://app.powerbi.com/view?r=YOUR_REPORT_ID">
@@ -715,18 +804,14 @@ document.getElementById("uploadStatus").innerText="Upload successful"
 
 datasetList.innerHTML = files.map(f=>"<div class='file-item'>"+f.name+"</div>").join("")
 
-document.getElementById("datasetCount").innerText = files.length
-
 }
 
 /* CHARTS */
 
-new Chart(
+new Chart(document.getElementById("attritionChart"),{
 
-document.getElementById("attritionChart"),
-
-{
 type:"line",
+
 data:{
 labels:["Jan","Feb","Mar","Apr","May","Jun"],
 datasets:[{
@@ -736,14 +821,13 @@ borderColor:"#e53935",
 tension:.3
 }]
 }
+
 })
 
-new Chart(
+new Chart(document.getElementById("bellCurve"),{
 
-document.getElementById("bellCurve"),
-
-{
 type:"line",
+
 data:{
 labels:[-3,-2,-1,0,1,2,3],
 datasets:[{
@@ -753,22 +837,20 @@ borderColor:"#e53935",
 tension:.4
 }]
 }
+
 })
 
-/* PARTICLES */
+new Chart(document.getElementById("recruitingChart"),{
 
-particlesJS("particles-js",{
+type:"bar",
 
-particles:{
-number:{value:70},
-color:{value:"#c62828"},
-line_linked:{
-enable:true,
-distance:140,
-color:"#c62828",
-opacity:0.4
-},
-move:{speed:1}
+data:{
+labels:["Applications","Screening","Interview","Offer","Hire"],
+datasets:[{
+label:"Hiring Funnel",
+data:[500,220,110,70,40],
+backgroundColor:"#c62828"
+}]
 }
 
 })
